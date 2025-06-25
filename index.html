@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JaxsonHQ</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0e0e10;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    #animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #0e0e10;
+      background-image: repeating-linear-gradient(45deg, #8e44ad33 0px, #8e44ad33 1px, transparent 1px, transparent 20px);
+      animation: shiftLines 20s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes shiftLines {
+      0% { background-position: 0 0; }
+      100% { background-position: 100px 100px; }
+    }
+
+    /* Header styling */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(30, 30, 40, 0.85);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 20px rgba(255, 77, 255, 0.5);
+      border-bottom: 2px solid #ff4dff;
+      transition: background 0.3s ease;
+    }
+
+    header:hover {
+      background: rgba(30, 30, 40, 0.95);
+      box-shadow: 0 0 30px #ff4dff;
+    }
+
+    header img {
+      height: 65px;
+      filter:
+        drop-shadow(0 0 8px #ff4dff)
+        drop-shadow(0 0 10px #00ffe0);
+      transition: transform 0.3s ease, filter 0.3s ease;
+      user-select: none;
+    }
+
+    header img:hover {
+      transform: scale(1.1);
+      filter:
+        drop-shadow(0 0 15px #ff4dff)
+        drop-shadow(0 0 20px #00ffe0);
+    }
+
+    nav {
+      display: flex;
+      gap: 1.8rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      transition: text-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+      position: relative;
+      padding: 4px 0;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2px;
+      background: #ff4dff;
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      text-shadow: 0 0 14px #ff4dff, 0 0 20px #00ffe0;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #1f1f23;
+      position: absolute;
+      top: 70px;
+      right: 2rem;
+      padding: 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 30px #ff4dff;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      z-index: 1100;
+    }
+
+    .mobile-menu.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 1101;
+    }
+
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 4px 0;
+      border-radius: 2px;
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-toggle:hover div {
+      background-color: #ff4dff;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    /* Section reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: transparent;
+      color: white;
+      text-shadow:
+        0 0 8px #ff4dff,
+        0 0 12px #ff4dff;
+      user-select: none;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 0.3em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 4rem 2rem;
+    }
+
+    .card {
+      background-color: #1f1f23;
+      padding: 2rem;
+      border-radius: 1rem;
+      border: 2px solid #8e44ad;
+      box-shadow: 0 0 20px #00ffe0;
+      text-align: center;
+      transition:
+        transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+      user-select: none;
+    }
+
+    .card:hover {
+      transform: translateY(-15px) scale(1.05);
+      box-shadow:
+        0 0 30px #ff4dff,
+        0 0 50px #00ffe0 inset;
+      border-color: #ff4dff;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #ff4dff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px #ff4dff;
+      transition:
+        all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      user-select: none;
+    }
+
+    .card a:hover {
+      background-color: #e600e6;
+      box-shadow: 0 0 25px #ff4dff;
+      transform: scale(1.1);
+    }
+
+    iframe {
+      border-radius: 1rem;
+      box-shadow: 0 0 30px #ff4dff;
+      border: none;
+      width: 100%;
+      max-width: 100%;
+      height: 300px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #0e0e10;
+      border-top: 2px solid #ff4dff;
+      color: #999;
+      font-weight: 500;
+      user-select: none;
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.mobile-menu');
+      menu.classList.toggle('show');
+    }
+
+    // Intersection Observer for section reveals with stagger
+    document.addEventListener('DOMContentLoaded', () => {
+      const reveals = document.querySelectorAll('.reveal');
+      const options = {
+        threshold: 0.1
+      };
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = Array.from(reveals).indexOf(entry.target);
+            setTimeout(() => {
+              entry.target.classList.add('active');
+            }, index * 200);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, options);
+      reveals.forEach(reveal => {
+        observer.observe(reveal);
+      });
+    });
+  </script>
+</head>
+<body>
+  <div id="animated-bg"></div>
+  <header>
+    <img src="https://i.imgur.com/lLsra6v.png" alt="JaxsonHQ Logo" />
+    <nav>
+      <a href="#gtarp">GTA RP</a>
+      <a href="#community">Community</a>
+      <a href="#merch">Merch</a>
+      <a href="#twitch">Twitch</a>
+    </nav>
+    <div class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu" role="button" tabindex="0">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="mobile-menu" role="menu">
+      <a href="#gtarp" role="menuitem">GTA RP</a>
+      <a href="#community" role="menuitem">Community</a>
+      <a href="#merch" role="menuitem">Merch</a>
+      <a href="#twitch" role="menuitem">Twitch</a>
+    </div>
+  </header>
+
+  <section class="hero reveal">
+    <h1>Welcome to JaxsonHQ</h1>
+    <p>Built Differnt. Held Together. #FAMILY</p>
+  </section>
+
+  <section class="grid reveal">
+    <div class="card" id="gtarp">
+      <h2>Join the GTA RP Server</h2>
+      <p>Be part of the action in Redwood OG RP with our custom-built roleplay experience.</p>
+      <a href="https://discord.gg/gs6BUqmThX" target="_blank" rel="noopener noreferrer">Join RP Server</a>
+    </div>
+
+    <div class="card" id="community">
+      <h2>JaxsonHQ Discord</h2>
+      <p>Hang out with the fam, get updates, and share laughs off-stream.</p>
+      <a href="https://discord.gg/6c4VnbP4qq" target="_blank" rel="noopener noreferrer">Join Community</a>
+    </div>
+
+    <div class="card" id="merch">
+      <h2>Merch Store</h2>
+      <p>Cop the latest Jaxson drip, limited drops, and fan favorites.</p>
+      <a href="jaxsonhq-shop.fourthwall.com" target="_blank" rel="noopener noreferrer">Shop Merch</a>
+    </div>
+
+    <div class="card" id="twitch">
+      <h2>Live on Twitch</h2>
+      <p>Catch the stream live! Laughs, chaos, and community shenanigans nightly.</p>
+      <iframe
+        src="https://player.twitch.tv/?channel=jaxsonhq&parent=jaxsonhq.com"
+        allowfullscreen="true"
+        scrolling="no"
+        height="300"
+        width="100%">
+      </iframe>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; © 2025 JaxsonHQ. All rights reserved.</p>
+  </footer>
+</body>
+</html>
