@@ -1,125 +1,242 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" href="images/favicon.ico" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About | JaxsonHQ</title>
+  <title>JaxsonHQ | About</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-    html { scroll-behavior: smooth; }
-    body {
+    /* Same CSS as index.html but WITHOUT animated-logo styles */
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes borderPulse {
+      0% {
+        border-color: #00e5e5;
+        box-shadow: 0 0 10px #00e5e5;
+      }
+      50% {
+        border-color: #ff007f;
+        box-shadow: 0 0 20px #ff007f;
+      }
+      100% {
+        border-color: #00e5e5;
+        box-shadow: 0 0 10px #00e5e5;
+      }
+    }
+
+    * {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #0e0e10;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at center, #2b0e3e 0%, #000 100%);
+      font-family: 'Segoe UI', sans-serif;
       color: white;
+      text-align: center;
       overflow-x: hidden;
     }
-    header {
+
+    .fade-in {
+      animation: fadeIn 1.5s ease-in-out both;
+    }
+
+    .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.8rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(30, 30, 40, 0.85);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 0 20px rgba(255, 77, 255, 0.5);
-      border-bottom: 2px solid #ff4dff;
+      padding: 1.5rem 3rem;
+      background: transparent;
+      flex-wrap: wrap;
     }
-    header img {
-      height: 65px;
-      filter: drop-shadow(0 0 8px #ff4dff) drop-shadow(0 0 10px #00ffe0);
-      transition: transform 0.3s ease, filter 0.3s ease;
-    }
-    nav {
-      display: flex;
-      gap: 1.8rem;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      transition: text-shadow 0.4s;
-      text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
-      position: relative;
-      padding: 4px 0;
-    }
-    nav a:hover {
-      text-shadow: 0 0 14px #ff4dff, 0 0 20px #00ffe0;
-    }
-    nav a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0%;
-      height: 2px;
-      background: #ff4dff;
-      transition: width 0.3s ease;
-    }
-    nav a:hover::after {
-      width: 100%;
-    }
-    .hero {
-      text-align: center;
-      padding: 4rem 2rem;
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
       color: white;
-      text-shadow: 0 0 8px #ff4dff, 0 0 12px #ff4dff;
+      border: 2px solid white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 8px;
+      background-color: rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-block;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
-    .hero h1 {
-      font-size: 4rem;
-      margin-bottom: 0.5em;
+
+    .logo:hover,
+    .logo:focus {
+      background-color: #00e5e5;
+      color: #000;
+      outline: none;
     }
-    .content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-      font-size: 1.2rem;
-      line-height: 1.8;
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
     }
-    .content p {
+
+    .nav-links li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color: #00e5e5;
+      background-color: rgba(0, 229, 229, 0.15);
+    }
+
+    .hero {
+      padding: 4rem 2rem;
+      position: relative;
+    }
+
+    .main-logo {
+      width: 160px;
+      filter: drop-shadow(0 0 20px #ff007f) drop-shadow(0 0 20px #00e5e5);
       margin-bottom: 1.5rem;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background-color: #0e0e10;
-      border-top: 2px solid #ff4dff;
-      color: #999;
+
+    h1 {
+      font-weight: 900;
+      letter-spacing: 2px;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #ddd;
+    }
+
+    .about-content {
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: #ddd;
+      text-align: left;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .socials img {
+      width: 40px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+      filter: drop-shadow(0 0 5px #fff);
+    }
+
+    .socials img:hover {
+      transform: scale(1.1);
+      filter: brightness(1.5) drop-shadow(0 0 8px #fff);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 1rem;
+      }
+      .hero {
+        padding: 3rem 1rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://i.imgur.com/lLsra6v.png" alt="JaxsonHQ Logo" />
-    <nav>
-      <a href="index.html#gtarp">GTA RP</a>
-      <a href="index.html#community">Community</a>
-      <a href="index.html#merch">Merch</a>
-      <a href="index.html#twitch">Twitch</a>
-      <a href="index.html#tiktok">TikTok</a>
-      <a href="index.html#youtube">YouTube</a>
-      <a href="about.html">About</a>
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+      <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="stream.html">Stream</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul>
     </nav>
   </header>
 
-  <section class="hero">
-    <h1>About Jaxson</h1>
-    <p>The brains, the chaos, the community glue.</p>
-  </section>
+  <main>
+    <section class="hero fade-in" role="main" aria-labelledby="about-title">
+      <img
+        src="https://i.imgur.com/Fo2UMPk.png"
+        alt="JHQ Logo"
+        class="main-logo"
+        loading="lazy"
+      />
+      <h1 id="about-title">About JaxsonHQ</h1>
+      <p class="description">
+        Welcome to JaxsonHQ — your go-to destination for streaming chaos and
+        building community. Founded on the principles of being different and
+        held together by the #FAMILY spirit, JaxsonHQ is where energy,
+        creativity, and fun collide.
+      </p>
 
-  <section class="content">
-    <p>Yo! I’m Jaxson — your friendly neighborhood chaos coordinator. I stream, I meme, I scream (usually when someone in GTA RP forgets to stop at a red light). If you're here, you’re already part of the fam.</p>
+      <div class="about-content">
+        <p>
+          JaxsonHQ is more than just a streaming channel; it’s a community. With
+          a focus on delivering entertaining content, engaging with viewers,
+          and supporting various GTA RP scenes, JaxsonHQ builds a unique and
+          welcoming environment.
+        </p>
+        <p>
+          Whether you're here to watch epic roleplay, high-energy races, or
+          just hang out and chat, JaxsonHQ is all about creating connections
+          and bringing people together. Join the family and be part of the
+          experience!
+        </p>
+      </div>
 
-    <p>From running the wildest RP scenarios in Redwood OG RP to building a community that laughs together, cries together, and occasionally sets fire to a virtual gas station together... this is the place. I built JaxsonHQ not just as a name, but as a vibe — built different, held together by all of us.</p>
-
-    <p>Whether you're vibing on Twitch, sharing memes in Discord, copping limited merch, or watching clips on TikTok — thank you for being part of this wild ride. #Family</p>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 JaxsonHQ. All rights reserved.</p>
-  </footer>
+      <div class="socials" aria-label="Social media links">
+        <a href="https://twitch.tv/jaxsonhq" target="_blank" rel="noopener noreferrer">
+          <img src="https://i.imgur.com/Tg6TtXZ.png" alt="Twitch" loading="lazy" />
+        </a>
+        <a href="https://discord.gg/YOURINVITECODE" target="_blank" rel="noopener noreferrer">
+          <img src="https://i.imgur.com/RBqBRE6.png" alt="Discord" loading="lazy" />
+        </a>
+        <a href="https://tiktok.com/@jaxsonhq" target="_blank" rel="noopener noreferrer">
+          <img src="https://i.imgur.com/uER5fLF.png" alt="TikTok" loading="lazy" />
+        </a>
+        <a href="https://youtube.com/@jaxsonhq" target="_blank" rel="noopener noreferrer">
+          <img src="https://i.imgur.com/kWjh1GR.png" alt="YouTube" loading="lazy" />
+        </a>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
