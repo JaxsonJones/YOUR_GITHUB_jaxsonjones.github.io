@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="images/favicon.ico" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JaxsonHQ | Stream</title>
+  <style>
+    /* Reuse same CSS as index.html but remove animated logo */
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes borderPulse {
+      0% {
+        border-color: #00e5e5;
+        box-shadow: 0 0 10px #00e5e5;
+      }
+      50% {
+        border-color: #ff007f;
+        box-shadow: 0 0 20px #ff007f;
+      }
+      100% {
+        border-color: #00e5e5;
+        box-shadow: 0 0 10px #00e5e5;
+      }
+    }
+
+    @keyframes pulseBounce {
+      0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px #00e5e5);
+      }
+      50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 20px #ff007f);
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at center, #2b0e3e 0%, #000 100%);
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .fade-in {
+      animation: fadeIn 1.5s ease-in-out both;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background: transparent;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: white;
+      border: 2px solid white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 8px;
+      background-color: rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-block;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .logo:hover,
+    .logo:focus {
+      background-color: #00e5e5;
+      color: #000;
+      outline: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color: #00e5e5;
+      background-color: rgba(0, 229, 229, 0.15);
+    }
+
+    .hero {
+      padding: 4rem 2rem;
+      position: relative;
+    }
+
+    h1 {
+      font-weight: 900;
+      letter-spacing: 2px;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .watch-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(45deg, #00e5e5, #ff007f);
+      color: white;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 0 15px #ff007f;
+      transition: background 0.3s ease;
+    }
+
+    .watch-btn:hover {
+      background: linear-gradient(45deg, #ff007f, #00e5e5);
+    }
+
+    .stream-wrapper {
+      width: 50%;
+      max-width: 960px;
+      margin: 3rem auto 0 auto;
+      aspect-ratio: 16 / 9;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .stream-wrapper {
+        width: 90%;
+        max-width: none;
+      }
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 1rem;
+      }
+    }
+
+    .stream-loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.25rem;
+      color: #00e5e5;
+      font-weight: bold;
+      z-index: 2;
+      animation: fadeIn 1s ease-in-out infinite alternate;
+    }
+
+    iframe.stream-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 4px solid #00e5e5;
+      border-radius: 12px;
+      background-color: #111;
+      display: block;
+      animation: borderPulse 3s infinite ease-in-out;
+    }
+  </style>
+  <script>
+    window.addEventListener('load', () => {
+      const iframe = document.querySelector('.stream-placeholder');
+      const loader = document.querySelector('.stream-loading');
+      iframe.addEventListener('load', () => {
+        loader.style.display = 'none';
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+      <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="stream.html" class="active">Stream</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero fade-in" role="main" aria-labelledby="stream-title">
+      <h1 id="stream-title">Live Stream</h1>
+      <a
+        class="watch-btn"
+        href="https://twitch.tv/jaxsonhq"
+        target="_blank"
+        rel="noopener noreferrer"
+        >🎥 Watch Live on Twitch</a
+      >
+
+      <div class="stream-wrapper" style="margin-top: 2rem;">
+        <div class="stream-loading">Loading stream...</div>
+        <iframe
+          class="stream-placeholder"
+          src="https://player.twitch.tv/?channel=jaxsonhq&parent=yourdomain.com"
+          allowfullscreen
+          frameborder="0"
+          loading="lazy"
+          title="JaxsonHQ Twitch Stream"
+        ></iframe>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
