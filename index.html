@@ -3,10 +3,12 @@
 <head>
   <link rel="icon" href="images/favicon.ico" />
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JaxsonHQ | Home</title>
   <style>
-    /* CSS start */
+    .fade-in {
+      animation: fadeIn 1.5s ease-in-out both;
+    }
 
     @keyframes fadeIn {
       from {
@@ -34,17 +36,6 @@
       }
     }
 
-    @keyframes pulseBounce {
-      0%, 100% {
-        transform: scale(1);
-        filter: drop-shadow(0 0 10px #00e5e5);
-      }
-      50% {
-        transform: scale(1.1);
-        filter: drop-shadow(0 0 20px #ff007f);
-      }
-    }
-
     * {
       margin: 0;
       padding: 0;
@@ -57,10 +48,6 @@
       color: white;
       text-align: center;
       overflow-x: hidden;
-    }
-
-    .fade-in {
-      animation: fadeIn 1.5s ease-in-out both;
     }
 
     .navbar {
@@ -81,16 +68,6 @@
       border-radius: 8px;
       background-color: rgba(0, 0, 0, 0.3);
       text-decoration: none;
-      cursor: pointer;
-      display: inline-block;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .logo:hover,
-    .logo:focus {
-      background-color: #00e5e5;
-      color: #000;
-      outline: none;
     }
 
     .nav-links {
@@ -106,14 +83,10 @@
       color: white;
       font-weight: 600;
       transition: color 0.3s ease;
-      padding: 0.25rem 0.5rem;
-      border-radius: 6px;
     }
 
-    .nav-links li a:hover,
-    .nav-links li a.active {
+    .nav-links li a:hover {
       color: #00e5e5;
-      background-color: rgba(0, 229, 229, 0.15);
     }
 
     .hero {
@@ -125,12 +98,7 @@
       width: 160px;
       filter: drop-shadow(0 0 20px #ff007f) drop-shadow(0 0 20px #00e5e5);
       margin-bottom: 1.5rem;
-      max-width: 100%;
-      height: auto;
-      animation: pulseBounce 3s ease-in-out infinite;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
+      animation: borderPulse 3s infinite ease-in-out;
     }
 
     h1 span {
@@ -183,23 +151,10 @@
     }
 
     .stream-wrapper {
-      width: 50%;
-      max-width: 960px;
+      width: 75%;
       margin: 3rem auto;
       aspect-ratio: 16 / 9;
       position: relative;
-    }
-
-    @media (max-width: 768px) {
-      .stream-wrapper {
-        width: 90%;
-        max-width: none;
-      }
-      .nav-links {
-        flex-direction: column;
-        gap: 1rem;
-        padding-top: 1rem;
-      }
     }
 
     .stream-loading {
@@ -227,20 +182,23 @@
       animation: borderPulse 3s infinite ease-in-out;
     }
 
-    .animated-logo {
-      width: 150px;
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      animation: pulseBounce 3s ease-in-out infinite;
-      cursor: default;
-      user-select: none;
-      z-index: 10;
+    .shaker-img {
+      display: none;
     }
 
     @media (max-width: 768px) {
-      .animated-logo {
-        display: none;
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 1rem;
+      }
+
+      .hero {
+        padding: 3rem 1rem;
+      }
+
+      .stream-wrapper {
+        width: 100%;
       }
     }
   </style>
@@ -256,53 +214,45 @@
 </head>
 <body>
   <header>
-    <nav class="navbar" role="navigation" aria-label="Main Navigation">
-      <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
+    <nav class="navbar">
+      <a href="index.html" class="logo">JHQ</a>
       <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="stream.html">Stream</a></li>
         <li><a href="events.html">Events</a></li>
         <li><a href="shop.html">Shop</a></li>
         <li><a href="community.html">Community</a></li>
+        <li><a href="redwood.html">Redwood OG RP</a></li>
       </ul>
     </nav>
   </header>
 
-  <section class="hero fade-in" role="main" aria-labelledby="home-title">
-    <img
-      src="https://i.imgur.com/Fo2UMPk.png"
-      alt="JHQ Logo"
-      class="main-logo"
-      loading="lazy"
-    />
-    <h1 id="home-title">
-      WELCOME TO<br /><span>JAXSONHQ</span>
-    </h1>
+  <section class="hero fade-in">
+    <img src="images/jaxsonhq-logo.png" alt="JHQ Logo" class="main-logo" loading="lazy" />
+    <h1>WELCOME TO<br><span>JAXSONHQ</span></h1>
     <p class="tagline">
-      Streaming Chaos<br />
-      Building Community<br />
+      Streaming Chaos<br>
+      Building Community<br>
       Built Different. Held Together. #FAMILY
     </p>
 
-    <div class="socials" aria-label="Social media links">
-      <a href="https://twitch.tv/jaxsonhq" target="_blank" rel="noopener noreferrer">
+    <div class="socials">
+      <a href="https://twitch.tv/jaxsonhq" target="_blank">
         <img src="https://i.imgur.com/Tg6TtXZ.png" alt="Twitch" loading="lazy" />
       </a>
-      <a href="https://discord.gg/YOURINVITECODE" target="_blank" rel="noopener noreferrer">
+      <a href="https://discord.gg/6c4VnbP4qq" target="_blank">
         <img src="https://i.imgur.com/RBqBRE6.png" alt="Discord" loading="lazy" />
       </a>
-      <a href="https://tiktok.com/@jaxsonhq" target="_blank" rel="noopener noreferrer">
+      <a href="https://tiktok.com/@jaxsonhq" target="_blank">
         <img src="https://i.imgur.com/uER5fLF.png" alt="TikTok" loading="lazy" />
       </a>
-      <a href="https://youtube.com/@jaxsonhq" target="_blank" rel="noopener noreferrer">
+      <a href="https://youtube.com/@jaxsonhq" target="_blank">
         <img src="https://i.imgur.com/kWjh1GR.png" alt="YouTube" loading="lazy" />
       </a>
     </div>
 
-    <a class="watch-btn" href="https://twitch.tv/jaxsonhq" target="_blank" rel="noopener noreferrer"
-      >🎥 Watch Live</a
-    >
+    <a class="watch-btn" href="https://twitch.tv/jaxsonhq" target="_blank">🎥 Watch Live</a>
 
     <div class="stream-wrapper">
       <div class="stream-loading">Loading stream...</div>
@@ -311,17 +261,8 @@
         src="https://player.twitch.tv/?channel=jaxsonhq&parent=jaxsonhq.com"
         allowfullscreen
         frameborder="0"
-        loading="lazy"
-        title="JaxsonHQ Twitch Stream"
       ></iframe>
     </div>
-
-    <img
-      src="https://i.imgur.com/Fo2UMPk.png"
-      alt="JHQ Animated Logo"
-      class="animated-logo"
-      loading="lazy"
-    />
   </section>
 </body>
 </html>
