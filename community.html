@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="images/favicon.ico" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Join the JaxsonHQ community – streamers, gamers, and fans unite! Get involved on Discord, Twitch, YouTube, and more." />
   <title>JaxsonHQ | Community</title>
+  <link rel="icon" href="images/favicon.ico" />
   <style>
-    /* Same styles as other pages minus animated logo */
-
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -80,7 +79,7 @@
       color: white;
       font-weight: 600;
       transition: color 0.3s ease;
-      padding: 0.25rem 0.5rem;
+      padding: 0.5rem 1rem;
       border-radius: 6px;
     }
 
@@ -121,6 +120,27 @@
       margin-bottom: 0.6rem;
     }
 
+    .community-info p a {
+      color: #00e5e5;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .community-info p a:hover {
+      text-decoration: underline;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
     @media (max-width: 768px) {
       .nav-links {
         flex-direction: column;
@@ -136,7 +156,7 @@
 <body>
   <header>
     <nav class="navbar" role="navigation" aria-label="Main Navigation">
-      <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
+      <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ<span class="sr-only">JaxsonHQ</span></a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -164,7 +184,7 @@
           <li>Stay updated with the latest events and streams.</li>
         </ul>
         <p>
-          <a href="https://discord.gg/6c4VnbP4qq" target="_blank" rel="noopener noreferrer" style="color:#00e5e5; text-decoration:none;">Join the Discord</a>
+          <a href="https://discord.gg/6c4VnbP4qq" target="_blank" rel="noopener noreferrer">Join the Discord</a>
         </p>
       </div>
     </section>
