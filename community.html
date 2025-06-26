@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="images/favicon.ico" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JaxsonHQ | Community</title>
+  <style>
+    /* Same styles as other pages minus animated logo */
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at center, #2b0e3e 0%, #000 100%);
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .fade-in {
+      animation: fadeIn 1.5s ease-in-out both;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background: transparent;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: white;
+      border: 2px solid white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 8px;
+      background-color: rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-block;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .logo:hover,
+    .logo:focus {
+      background-color: #00e5e5;
+      color: #000;
+      outline: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color: #00e5e5;
+      background-color: rgba(0, 229, 229, 0.15);
+    }
+
+    .hero {
+      padding: 4rem 2rem;
+      position: relative;
+    }
+
+    h1 {
+      font-weight: 900;
+      letter-spacing: 2px;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .community-info {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: left;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: #ddd;
+    }
+
+    .community-info ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .community-info ul li {
+      margin-bottom: 0.6rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 1rem;
+      }
+      .hero {
+        padding: 3rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+      <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="stream.html">Stream</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="community.html" class="active">Community</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero fade-in" role="main" aria-labelledby="community-title">
+      <h1 id="community-title">Join the JaxsonHQ Family</h1>
+      <div class="community-info">
+        <p>
+          The heart of JaxsonHQ is the community. Whether you're a streamer,
+          gamer, or fan, you’re welcome here.
+        </p>
+        <ul>
+          <li>Join our Discord server for chat, events, and support.</li>
+          <li>Participate in regular giveaways and contests.</li>
+          <li>Connect with other fans across Twitch, TikTok, and YouTube.</li>
+          <li>Stay updated with the latest events and streams.</li>
+        </ul>
+        <p>
+          <a href="https://discord.gg/YOURINVITECODE" target="_blank" rel="noopener noreferrer" style="color:#00e5e5; text-decoration:none;">Join the Discord</a>
+        </p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
