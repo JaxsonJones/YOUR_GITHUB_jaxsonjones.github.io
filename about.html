@@ -1,55 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="images/favicon.ico" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>JaxsonHQ | About</title>
+  <link rel="icon" href="images/favicon.ico" />
   <style>
-    /* Same CSS as index.html but WITHOUT animated-logo styles */
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    :root {
+      --neon-pink: #ff4fc2;
+      --tiffany-blue: #40e0d0;
+      --deep-purple: #1e003b;
+      --text-light: #ffffff;
     }
 
-    @keyframes borderPulse {
-      0% {
-        border-color: #00e5e5;
-        box-shadow: 0 0 10px #00e5e5;
-      }
-      50% {
-        border-color: #ff007f;
-        box-shadow: 0 0 20px #ff007f;
-      }
-      100% {
-        border-color: #00e5e5;
-        box-shadow: 0 0 10px #00e5e5;
-      }
-    }
-
-    * {
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
     body {
-      background: radial-gradient(circle at center, #2b0e3e 0%, #000 100%);
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
+      background: radial-gradient(circle at center, var(--deep-purple), #000);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-light);
       text-align: center;
       overflow-x: hidden;
-    }
-
-    .fade-in {
-      animation: fadeIn 1.5s ease-in-out both;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .navbar {
@@ -57,27 +37,32 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 3rem;
-      background: transparent;
+      background: #000000cc;
+      border-bottom: 2px solid var(--tiffany-blue);
       flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: saturate(180%) blur(10px);
+      user-select: none;
     }
 
     .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: white;
-      border: 2px solid white;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text-light);
+      border: 2px solid var(--text-light);
       padding: 0.25rem 0.75rem;
-      border-radius: 8px;
-      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      background-color: #ffffff10;
       text-decoration: none;
-      cursor: pointer;
-      display: inline-block;
       transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
     }
 
     .logo:hover,
     .logo:focus {
-      background-color: #00e5e5;
+      background-color: var(--tiffany-blue);
       color: #000;
       outline: none;
     }
@@ -87,62 +72,74 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      justify-content: center;
     }
 
     .nav-links li a {
       text-decoration: none;
-      color: white;
+      color: var(--text-light);
       font-weight: 600;
-      transition: color 0.3s ease;
-      padding: 0.25rem 0.5rem;
-      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
     }
 
     .nav-links li a:hover,
+    .nav-links li a:focus,
     .nav-links li a.active {
-      color: #00e5e5;
-      background-color: rgba(0, 229, 229, 0.15);
+      background: rgba(64, 224, 208, 0.1);
+      color: var(--tiffany-blue);
+      outline: none;
+    }
+
+    main {
+      flex-grow: 1;
     }
 
     .hero {
-      padding: 4rem 2rem;
-      position: relative;
+      padding: 4rem 2rem 6rem;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
     }
 
     .main-logo {
       width: 160px;
-      filter: drop-shadow(0 0 20px #ff007f) drop-shadow(0 0 20px #00e5e5);
-      margin-bottom: 1.5rem;
       max-width: 100%;
-      height: auto;
+      margin: 0 auto 2rem;
+      filter:
+        drop-shadow(0 0 20px var(--neon-pink))
+        drop-shadow(0 0 20px var(--tiffany-blue));
+      user-select: none;
       display: block;
-      margin-left: auto;
-      margin-right: auto;
+      height: auto;
     }
 
     h1 {
+      font-size: 2.5rem;
       font-weight: 900;
       letter-spacing: 2px;
-      font-size: 2.5rem;
       margin-bottom: 1rem;
+      user-select: text;
+      color: var(--text-light);
     }
 
     .description {
-      max-width: 700px;
-      margin: 0 auto 2rem auto;
       font-size: 1.2rem;
       line-height: 1.6;
       color: #ddd;
+      margin-bottom: 2rem;
+      user-select: text;
     }
 
     .about-content {
-      max-width: 700px;
-      margin: 0 auto 2rem auto;
       font-size: 1.15rem;
       line-height: 1.6;
       color: #ddd;
       text-align: left;
+      margin: 0 auto 2rem auto;
+      max-width: 700px;
+      user-select: text;
     }
 
     .socials {
@@ -153,91 +150,126 @@
       flex-wrap: wrap;
     }
 
-    .socials img {
-      width: 40px;
-      transition: transform 0.3s ease, filter 0.3s ease;
+    .socials a {
+      display: inline-block;
       filter: drop-shadow(0 0 5px #fff);
+      transition: transform 0.3s ease, filter 0.3s ease;
     }
 
-    .socials img:hover {
+    .socials a:hover,
+    .socials a:focus {
       transform: scale(1.1);
       filter: brightness(1.5) drop-shadow(0 0 8px #fff);
+      outline: none;
     }
 
+    .socials img {
+      width: 40px;
+      height: 40px;
+      display: block;
+      user-select: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #ccc;
+      background-color: #000000cc;
+      font-size: 0.95rem;
+      border-top: 1px solid var(--tiffany-blue);
+      user-select: none;
+      margin-top: auto;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
       .nav-links {
         flex-direction: column;
         gap: 1rem;
         padding-top: 1rem;
+        width: 100%;
       }
+
       .hero {
-        padding: 3rem 1rem;
+        padding: 3rem 1rem 5rem;
+        max-width: 100%;
+      }
+
+      .about-content {
+        text-align: center;
+        padding: 0 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <nav class="navbar" role="navigation" aria-label="Main Navigation">
-      <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="stream.html">Stream</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="community.html">Community</a></li>
-        <li><a href="redwood.html">Redwood OG RP</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active" aria-current="page">About</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="redwood.html">Redwood OG RP</a></li>
+      <li><a href="characters.html">Characters</a></li>
+    </ul>
+  </nav>
 
+  <!-- Main Content -->
   <main>
-    <section class="hero fade-in" role="main" aria-labelledby="about-title">
+    <section class="hero" role="main" aria-labelledby="about-title">
       <img
         src="https://i.imgur.com/Fo2UMPk.png"
         alt="JHQ Logo"
         class="main-logo"
         loading="lazy"
+        width="160"
+        height="160"
       />
       <h1 id="about-title">About JaxsonHQ</h1>
+
       <p class="description">
-        Welcome to JaxsonHQ — your go-to destination for streaming chaos and
-        building community. Founded on the principles of being different and
-        held together by the #FAMILY spirit, JaxsonHQ is where energy,
+        Welcome to <strong>JaxsonHQ</strong> — your go-to destination for streaming chaos and building community.
+        Founded on the principles of being different and held together by the #FAMILY spirit, JaxsonHQ is where energy,
         creativity, and fun collide.
       </p>
 
       <div class="about-content">
         <p>
-          JaxsonHQ is more than just a streaming channel; it’s a community. With
-          a focus on delivering entertaining content, engaging with viewers,
-          and supporting various GTA RP scenes, JaxsonHQ builds a unique and
-          welcoming environment.
+          JaxsonHQ isn’t just a brand or a channel — it’s a movement. Born from high-octane GTA RP, chaotic character storytelling,
+          and unapologetic community vibes, the mission is simple: build a place where everyone belongs, laughs hard, and lives loud.
         </p>
         <p>
-          Whether you're here to watch epic roleplay, high-energy races, or
-          just hang out and chat, JaxsonHQ is all about creating connections
-          and bringing people together. Join the family and be part of the
-          experience!
+          Whether you’re here for wild Twitch streams, iconic RP characters, the carnivore wellness journey, or just vibing with the fam — JHQ
+          brings it together. It's streaming. It's storytelling. It's a family. And it's just getting started.
+        </p>
+        <p>
+          Come for the content. Stay for the community. 💥
         </p>
       </div>
 
+      <!-- Social Icons -->
       <div class="socials" aria-label="Social media links">
-        <a href="https://twitch.tv/jaxsonhq" target="_blank" rel="noopener noreferrer">
-          <img src="https://i.imgur.com/Tg6TtXZ.png" alt="Twitch" loading="lazy" />
+        <a href="https://twitch.tv/jaxsonhq" target="_blank" rel="noopener noreferrer" aria-label="Twitch">
+          <img src="https://i.imgur.com/Tg6TtXZ.png" alt="Twitch" loading="lazy" width="40" height="40" />
         </a>
-        <a href="https://discord.gg/6c4VnbP4qq" target="_blank" rel="noopener noreferrer">
-          <img src="https://i.imgur.com/RBqBRE6.png" alt="Discord" loading="lazy" />
+        <a href="https://discord.gg/6c4VnbP4qq" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+          <img src="https://i.imgur.com/RBqBRE6.png" alt="Discord" loading="lazy" width="40" height="40" />
         </a>
-        <a href="https://tiktok.com/@jaxsonhq" target="_blank" rel="noopener noreferrer">
-          <img src="https://i.imgur.com/uER5fLF.png" alt="TikTok" loading="lazy" />
+        <a href="https://tiktok.com/@jaxsonhq" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <img src="https://i.imgur.com/uER5fLF.png" alt="TikTok" loading="lazy" width="40" height="40" />
         </a>
-        <a href="https://youtube.com/@jaxsonhq" target="_blank" rel="noopener noreferrer">
-          <img src="https://i.imgur.com/kWjh1GR.png" alt="YouTube" loading="lazy" />
+        <a href="https://youtube.com/@jaxsonhq" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <img src="https://i.imgur.com/kWjh1GR.png" alt="YouTube" loading="lazy" width="40" height="40" />
         </a>
       </div>
     </section>
   </main>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 JaxsonHQ | Built Different. Held Together. <strong>#FAMILY</strong>
+  </footer>
 </body>
 </html>
