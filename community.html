@@ -3,37 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Join the JaxsonHQ community – streamers, gamers, and fans unite! Get involved on Discord, Twitch, YouTube, and more." />
   <title>JaxsonHQ | Community</title>
   <link rel="icon" href="images/favicon.ico" />
   <style>
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    :root {
+      --neon-pink: #ff4fc2;
+      --tiffany-blue: #40e0d0;
+      --deep-purple: #1e003b;
+      --text-light: #ffffff;
     }
 
-    * {
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
     body {
-      background: radial-gradient(circle at center, #2b0e3e 0%, #000 100%);
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
+      background: radial-gradient(circle at center, var(--deep-purple), #000);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-light);
       text-align: center;
       overflow-x: hidden;
-    }
-
-    .fade-in {
-      animation: fadeIn 1.5s ease-in-out both;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .navbar {
@@ -41,27 +37,32 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 3rem;
-      background: transparent;
+      background: #000000cc;
+      border-bottom: 2px solid var(--tiffany-blue);
       flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: saturate(180%) blur(10px);
+      user-select: none;
     }
 
     .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: white;
-      border: 2px solid white;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text-light);
+      border: 2px solid var(--text-light);
       padding: 0.25rem 0.75rem;
-      border-radius: 8px;
-      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      background-color: #ffffff10;
       text-decoration: none;
-      cursor: pointer;
-      display: inline-block;
       transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
     }
 
     .logo:hover,
     .logo:focus {
-      background-color: #00e5e5;
+      background-color: var(--tiffany-blue);
       color: #000;
       outline: none;
     }
@@ -71,43 +72,49 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      justify-content: center;
     }
 
     .nav-links li a {
       text-decoration: none;
-      color: white;
+      color: var(--text-light);
       font-weight: 600;
-      transition: color 0.3s ease;
       padding: 0.5rem 1rem;
-      border-radius: 6px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
     }
 
     .nav-links li a:hover,
+    .nav-links li a:focus,
     .nav-links li a.active {
-      color: #00e5e5;
-      background-color: rgba(0, 229, 229, 0.15);
+      background: rgba(64, 224, 208, 0.1);
+      color: var(--tiffany-blue);
+      outline: none;
     }
 
-    .hero {
-      padding: 4rem 2rem;
-      position: relative;
+    main {
+      flex-grow: 1;
+      max-width: 700px;
+      margin: 4rem auto 6rem;
+      padding: 0 1rem;
+      text-align: left;
     }
 
     h1 {
       font-weight: 900;
       letter-spacing: 2px;
       font-size: 2.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      user-select: text;
+      color: var(--text-light);
     }
 
     .community-info {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: left;
+      color: #ddd;
       font-size: 1.15rem;
       line-height: 1.6;
-      color: #ddd;
+      user-select: text;
     }
 
     .community-info ul {
@@ -120,25 +127,28 @@
       margin-bottom: 0.6rem;
     }
 
-    .community-info p a {
-      color: #00e5e5;
+    .community-info a {
+      color: var(--tiffany-blue);
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
+      transition: color 0.3s ease;
     }
 
-    .community-info p a:hover {
-      text-decoration: underline;
+    .community-info a:hover,
+    .community-info a:focus {
+      color: var(--neon-pink);
+      outline: none;
     }
 
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      border: 0;
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #ccc;
+      background-color: #00000066;
+      font-size: 0.95rem;
+      border-top: 1px solid var(--tiffany-blue);
+      margin-top: auto;
+      user-select: none;
     }
 
     @media (max-width: 768px) {
@@ -147,47 +157,59 @@
         gap: 1rem;
         padding-top: 1rem;
       }
-      .hero {
-        padding: 3rem 1rem;
+
+      main {
+        margin: 3rem auto 5rem;
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .community-info {
+        text-align: center;
+      }
+
+      .community-info ul {
+        padding-left: 0;
+        list-style-position: inside;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <nav class="navbar" role="navigation" aria-label="Main Navigation">
-      <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ<span class="sr-only">JaxsonHQ</span></a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="stream.html">Stream</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="community.html" class="active">Community</a></li>
-        <li><a href="redwood.html">Redwood OG RP</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="community.html" class="active" aria-current="page">Community</a></li>
+      <li><a href="redwood.html">Redwood OG RP</a></li>
+      <li><a href="characters.html">Characters</a></li>
+    </ul>
+  </nav>
 
   <main>
-    <section class="hero fade-in" role="main" aria-labelledby="community-title">
-      <h1 id="community-title">Join the JaxsonHQ Family</h1>
-      <div class="community-info">
-        <p>
-          The heart of JaxsonHQ is the community. Whether you're a streamer,
-          gamer, or fan, you’re welcome here.
-        </p>
-        <ul>
-          <li>Join our Discord server for chat, events, and support.</li>
-          <li>Participate in regular giveaways and contests.</li>
-          <li>Connect with other fans across Twitch, TikTok, and YouTube.</li>
-          <li>Stay updated with the latest events and streams.</li>
-        </ul>
-        <p>
-          <a href="https://discord.gg/6c4VnbP4qq" target="_blank" rel="noopener noreferrer">Join the Discord</a>
-        </p>
-      </div>
+    <h1 id="community-title">Join the JaxsonHQ Family</h1>
+    <section class="community-info" aria-labelledby="community-title">
+      <p>
+        The heart of JaxsonHQ is the community. Whether you're a streamer,
+        gamer, or fan, you’re welcome here.
+      </p>
+      <ul>
+        <li>Join our Discord server for chat, events, and support.</li>
+        <li>Participate in regular giveaways and contests.</li>
+        <li>Connect with other fans across Twitch, TikTok, and YouTube.</li>
+        <li>Stay updated with the latest events and streams.</li>
+      </ul>
+      <p>
+        <a href="https://discord.gg/6c4VnbP4qq" target="_blank" rel="noopener noreferrer">Join the Discord</a>
+      </p>
     </section>
   </main>
+
+  <footer>
+    &copy; 2025 JaxsonHQ | Built Different. Held Together. <strong>#FAMILY</strong>
+  </footer>
 </body>
 </html>
