@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JaxsonHQ | Characters</title>
+  <link rel="icon" href="images/favicon.ico" />
+  <style>
+    :root {
+      --neon-pink: #ff4fc2;
+      --tiffany-blue: #40e0d0;
+      --deep-purple: #1e003b;
+      --card-bg: #2c003f;
+      --text-light: #ffffff;
+      --text-muted: #ccc;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at center, var(--deep-purple), #000000);
+      color: var(--text-light);
+    }
+
+    nav.navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background: #000000cc;
+      border-bottom: 2px solid var(--tiffany-blue);
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--text-light);
+      border: 2px solid var(--text-light);
+      padding: 0.25rem 0.75rem;
+      border-radius: 10px;
+      background-color: #ffffff10;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding-left: 0;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color: var(--tiffany-blue);
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 2.8rem;
+      color: var(--tiffany-blue);
+    }
+
+    .bio-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .bio-card {
+      background-color: var(--card-bg);
+      border: 2px solid var(--neon-pink);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 0 20px var(--neon-pink);
+      animation: fadeIn 1s ease both;
+    }
+
+    .bio-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      border: 2px solid var(--tiffany-blue);
+    }
+
+    .bio-card h2 {
+      margin-top: 0;
+      color: var(--tiffany-blue);
+      font-size: 1.6rem;
+    }
+
+    .bio-card p {
+      margin: 0.4rem 0;
+      line-height: 1.5;
+    }
+
+    .bio-card p strong {
+      color: var(--neon-pink);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--text-muted);
+      background-color: #00000066;
+      margin-top: 2rem;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .logo {
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">JHQ</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="stream.html">Stream</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="redwood.html">Redwood OG RP</a></li>
+      <li><a href="characters.html" class="active">Characters</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Title -->
+  <h1>RP Character Bios</h1>
+
+  <!-- Character Cards -->
+  <div class="bio-container">
+    <!-- Character 1: Jaxson -->
+    <div class="bio-card">
+      <img src="https://i.imgur.com/yourimage2.png" alt="Jaxson">
+      <h2>Jaxson</h2>
+      <p><strong>Role:</strong> Content Creator / Chaos Queen</p>
+      <p><strong>Vibe:</strong> Funny, Flirty, Unpredictable</p>
+      <p><strong>Story:</strong> Known for turning the streets into a stage. From racing to singing to blowing stuff up, Jaxson lives for the spotlight and drives the wildest RP moments across the city and county.</p>
+    </div>
+
+    <!-- Character 2: Judd "Slick" Maddox -->
+    <div class="bio-card">
+      <img src="https://i.imgur.com/yourimage3.png" alt="Judd Maddox">
+      <h2>Judd "Slick" Maddox</h2>
+      <p><strong>Role:</strong> VP of the Angels of Death MC</p>
+      <p><strong>Vibe:</strong> Charismatic, Calculated, Smooth</p>
+      <p><strong>Story:</strong> A mastermind in leather. Judd handles the club's dirty deals and delicate diplomacy with equal ease. He’s the guy you call when you need results—without leaving a mess.</p>
+    </div>
+
+    <!-- Character 3: Rick O'Shea -->
+    <div class="bio-card">
+      <img src="https://i.imgur.com/yourimage4.png" alt="Rick O'Shea">
+      <h2>Rick O'Shea</h2>
+      <p><strong>Role:</strong> LSPD Officer</p>
+      <p><strong>Vibe:</strong> Lipsy, Wild, Outlandish</p>
+      <p><strong>Story:</strong> Is he arresting criminals—or helping them escape? Rick O'Shea walks the tightrope between law and chaos with a wink and a stun gun. You never know if he's backing you up or busting you down. One thing's for sure: he's unforgettable.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 JaxsonHQ | All characters are a chaotic work of fiction.
+  </footer>
+</body>
+</html>
