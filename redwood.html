@@ -6,34 +6,27 @@
   <title>JaxsonHQ | Redwood OG GTA RP</title>
   <link rel="icon" href="images/favicon.ico" />
   <style>
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    :root {
+      --neon-pink: #ff4fc2;
+      --tiffany-blue: #40e0d0;
+      --deep-purple: #1e003b;
+      --text-light: #ffffff;
     }
 
-    * {
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
     body {
-      background: radial-gradient(circle at center, #2b0e3e 0%, #000 100%);
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
-      text-align: center;
+      background: radial-gradient(circle at center, var(--deep-purple), #000);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-light);
       overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    .fade-in {
-      animation: fadeIn 1.5s ease-in-out both;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     .navbar {
@@ -41,27 +34,30 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 3rem;
-      background: transparent;
+      background: #000000cc;
+      border-bottom: 2px solid var(--tiffany-blue);
       flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
     }
 
     .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: white;
-      border: 2px solid white;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text-light);
+      border: 2px solid var(--text-light);
       padding: 0.25rem 0.75rem;
-      border-radius: 8px;
-      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      background-color: #ffffff10;
       text-decoration: none;
-      cursor: pointer;
-      display: inline-block;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .logo:hover,
     .logo:focus {
-      background-color: #00e5e5;
+      background-color: var(--tiffany-blue);
       color: #000;
       outline: none;
     }
@@ -71,41 +67,41 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      justify-content: center;
     }
 
     .nav-links li a {
       text-decoration: none;
-      color: white;
+      color: var(--text-light);
       font-weight: 600;
-      transition: color 0.3s ease;
-      padding: 0.25rem 0.5rem;
-      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .nav-links li a:hover,
     .nav-links li a.active {
-      color: #00e5e5;
-      background-color: rgba(0, 229, 229, 0.15);
+      background: rgba(64, 224, 208, 0.1);
+      color: var(--tiffany-blue);
     }
 
     main {
       padding: 4rem 2rem;
       max-width: 900px;
-      margin: 0 auto;
+      margin: 0 auto 4rem;
       text-align: left;
+      flex-grow: 1;
     }
 
     h1 {
+      font-size: 2.5rem;
       font-weight: 900;
       letter-spacing: 2px;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
       text-align: center;
+      margin-bottom: 1.5rem;
     }
 
     h2 {
-      color: #ff007f;
+      color: var(--neon-pink);
       margin-top: 2rem;
       margin-bottom: 1rem;
       font-size: 1.75rem;
@@ -115,6 +111,7 @@
       font-size: 1.15rem;
       color: #ddd;
       margin-bottom: 1rem;
+      line-height: 1.6;
     }
 
     ul {
@@ -122,7 +119,7 @@
       padding-left: 1.5rem;
     }
 
-    a.discord-link {
+    .discord-link {
       display: inline-block;
       margin-top: 1rem;
       padding: 0.75rem 2rem;
@@ -136,10 +133,20 @@
       text-align: center;
     }
 
-    a.discord-link:hover,
-    a.discord-link:focus {
+    .discord-link:hover,
+    .discord-link:focus {
       background: linear-gradient(45deg, #99aab5, #7289da);
       outline: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #ccc;
+      background-color: #00000066;
+      font-size: 0.95rem;
+      border-top: 1px solid var(--tiffany-blue);
+      margin-top: auto;
     }
 
     @media (max-width: 768px) {
@@ -148,39 +155,42 @@
         gap: 1rem;
         padding-top: 1rem;
       }
+
       main {
         padding: 2rem 1rem;
         text-align: center;
       }
+
+      ul {
+        padding-left: 0;
+        list-style-position: inside;
+      }
+
       h1 {
         font-size: 2rem;
       }
+
       h2 {
         font-size: 1.5rem;
-      }
-      ul {
-        padding-left: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <nav class="navbar" role="navigation" aria-label="Main Navigation">
-      <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="stream.html">Stream</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="community.html">Community</a></li>
-        <li><a href="redwood.html" class="active">Redwood OG RP</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="redwood.html" class="active" aria-current="page">Redwood OG RP</a></li>
+      <li><a href="characters.html">Characters</a></li>
+    </ul>
+  </nav>
 
-  <main role="main" class="fade-in">
+  <main role="main">
     <h1>Redwood OG GTA RP City</h1>
     <p>
       Welcome to Redwood OG, a thriving GTA RP community centered around
@@ -210,9 +220,14 @@
         rel="noopener noreferrer"
         class="discord-link"
         aria-label="Join Redwood OG Discord"
-        >Join Redwood OG Discord</a
       >
+        Join Redwood OG Discord
+      </a>
     </p>
   </main>
+
+  <footer>
+    &copy; 2025 JaxsonHQ | Built Different. Held Together. <strong>#FAMILY</strong>
+  </footer>
 </body>
 </html>
