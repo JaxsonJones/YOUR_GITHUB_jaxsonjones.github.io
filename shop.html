@@ -1,40 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="images/favicon.ico" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>JaxsonHQ | Shop</title>
+  <link rel="icon" href="images/favicon.ico" />
   <style>
-    /* Same base styles as others */
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    :root {
+      --neon-pink: #ff4fc2;
+      --tiffany-blue: #40e0d0;
+      --deep-purple: #1e003b;
+      --text-light: #ffffff;
     }
 
-    * {
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
     body {
-      background: radial-gradient(circle at center, #2b0e3e 0%, #000 100%);
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
+      background: radial-gradient(circle at center, var(--deep-purple), #000);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-light);
       text-align: center;
       overflow-x: hidden;
-    }
-
-    .fade-in {
-      animation: fadeIn 1.5s ease-in-out both;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .navbar {
@@ -42,27 +37,32 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 3rem;
-      background: transparent;
+      background: #000000cc;
+      border-bottom: 2px solid var(--tiffany-blue);
       flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: saturate(180%) blur(10px);
+      user-select: none;
     }
 
     .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: white;
-      border: 2px solid white;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text-light);
+      border: 2px solid var(--text-light);
       padding: 0.25rem 0.75rem;
-      border-radius: 8px;
-      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      background-color: #ffffff10;
       text-decoration: none;
-      cursor: pointer;
-      display: inline-block;
       transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
     }
 
     .logo:hover,
     .logo:focus {
-      background-color: #00e5e5;
+      background-color: var(--tiffany-blue);
       color: #000;
       outline: none;
     }
@@ -72,53 +72,90 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      justify-content: center;
     }
 
     .nav-links li a {
       text-decoration: none;
-      color: white;
+      color: var(--text-light);
       font-weight: 600;
-      transition: color 0.3s ease;
-      padding: 0.25rem 0.5rem;
-      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
     }
 
     .nav-links li a:hover,
+    .nav-links li a:focus,
     .nav-links li a.active {
-      color: #00e5e5;
-      background-color: rgba(0, 229, 229, 0.15);
+      background: rgba(64, 224, 208, 0.1);
+      color: var(--tiffany-blue);
+      outline: none;
     }
 
-    .hero {
-      padding: 4rem 2rem;
-      position: relative;
+    main {
+      flex-grow: 1;
+      max-width: 700px;
+      margin: 4rem auto 6rem;
+      padding: 0 1rem;
+      text-align: left;
     }
 
     h1 {
       font-weight: 900;
       letter-spacing: 2px;
       font-size: 2.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      user-select: text;
+      color: var(--text-light);
     }
 
     .shop-list {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: left;
+      color: #ddd;
       font-size: 1.15rem;
       line-height: 1.6;
-      color: #ddd;
     }
 
     .shop-list h2 {
-      color: #ff007f;
+      color: var(--neon-pink);
       margin-bottom: 1rem;
+      user-select: text;
     }
 
     .shop-list ul {
       list-style-type: disc;
       padding-left: 1.5rem;
+      user-select: text;
+    }
+
+    .shop-list p {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .shop-list a {
+      color: var(--tiffany-blue);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .shop-list a:hover,
+    .shop-list a:focus {
+      color: var(--neon-pink);
+      outline: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #ccc;
+      background-color: #00000066;
+      font-size: 0.95rem;
+      border-top: 1px solid var(--tiffany-blue);
+      margin-top: auto;
+      user-select: none;
     }
 
     @media (max-width: 768px) {
@@ -127,44 +164,56 @@
         gap: 1rem;
         padding-top: 1rem;
       }
-      .hero {
-        padding: 3rem 1rem;
+
+      main {
+        margin: 3rem auto 5rem;
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .shop-list {
+        text-align: center;
+      }
+
+      .shop-list ul {
+        padding-left: 0;
+        list-style-position: inside;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <nav class="navbar" role="navigation" aria-label="Main Navigation">
-      <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="stream.html">Stream</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="shop.html" class="active">Shop</a></li>
-        <li><a href="community.html">Community</a></li>
-        <li><a href="redwood.html">Redwood OG RP</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="shop.html" class="active" aria-current="page">Shop</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="redwood.html">Redwood OG RP</a></li>
+      <li><a href="characters.html">Characters</a></li>
+    </ul>
+  </nav>
 
   <main>
-    <section class="hero fade-in" role="main" aria-labelledby="shop-title">
-      <h1 id="shop-title">Shop JaxsonHQ Merch</h1>
-      <div class="shop-list">
-        <h2>Featured Items</h2>
-        <ul>
-          <li><strong>Tropical Vibes Jax & Rocky Graphic Tee</strong> – Palm trees, waves, and a partial sun</li>
-          <li><strong>JAXSONHQ Bold Logo Tee</strong> – Perfect for gamers</li>
-          <li><strong>JHQ Think Different Trucker Hat</strong> – bold pink 'JHQ' letters and a motivational tagline</li>
-          <li><strong>JAXSONHQ Desk Mat</strong> – Built Different. Held Together. #FAMILY</li>
-        </ul>
-        <p style="margin-top:1.5rem;">
-          Visit <a href="https://jaxsonhq-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color:#00e5e5; text-decoration:none;">Shop Merch</a> to shop all merch and support the community.
-        </p>
-      </div>
+    <h1 id="shop-title">Shop JaxsonHQ Merch</h1>
+    <section class="shop-list" aria-labelledby="shop-title">
+      <h2>Featured Items</h2>
+      <ul>
+        <li><strong>Tropical Vibes Jax & Rocky Graphic Tee</strong> – Palm trees, waves, and a partial sun</li>
+        <li><strong>JAXSONHQ Bold Logo Tee</strong> – Perfect for gamers</li>
+        <li><strong>JHQ Think Different Trucker Hat</strong> – Bold pink 'JHQ' letters and a motivational tagline</li>
+        <li><strong>JAXSONHQ Desk Mat</strong> – Built Different. Held Together. #FAMILY</li>
+      </ul>
+      <p>
+        Visit <a href="https://jaxsonhq-shop.fourthwall.com" target="_blank" rel="noopener noreferrer">Fourthwall Store</a> to shop all merch and support the community.
+      </p>
     </section>
   </main>
+
+  <footer>
+    &copy; 2025 JaxsonHQ | Built Different. Held Together. <strong>#FAMILY</strong>
+  </footer>
 </body>
 </html>
