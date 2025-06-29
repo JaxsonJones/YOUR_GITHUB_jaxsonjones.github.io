@@ -13,7 +13,7 @@
       --text-light: #ffffff;
     }
 
-    * {
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -21,10 +21,15 @@
 
     body {
       background: radial-gradient(circle at center, var(--deep-purple), #000);
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: var(--text-light);
       text-align: center;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     .navbar {
@@ -35,23 +40,30 @@
       background: #000000cc;
       border-bottom: 2px solid var(--tiffany-blue);
       flex-wrap: wrap;
+      z-index: 1000;
+      position: sticky;
+      top: 0;
+      backdrop-filter: saturate(180%) blur(10px);
     }
 
     .logo {
       font-size: 2rem;
-      font-weight: bold;
+      font-weight: 900;
       color: var(--text-light);
       border: 2px solid var(--text-light);
       padding: 0.25rem 0.75rem;
       border-radius: 10px;
       background-color: #ffffff10;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
     }
 
-    .logo:hover {
+    .logo:hover,
+    .logo:focus {
       background-color: var(--tiffany-blue);
       color: #000;
+      outline: none;
     }
 
     .nav-links {
@@ -67,6 +79,7 @@
       font-weight: 600;
       padding: 0.5rem 1rem;
       border-radius: 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .nav-links li a:hover,
@@ -76,14 +89,20 @@
     }
 
     .hero {
-      padding: 4rem 2rem;
+      padding: 4rem 2rem 6rem;
+      flex-grow: 1;
     }
 
     .main-logo {
       width: 180px;
       margin: 0 auto 1.5rem;
       animation: pulseBounce 3s ease-in-out infinite;
-      filter: drop-shadow(0 0 15px var(--neon-pink)) drop-shadow(0 0 15px var(--tiffany-blue));
+      filter:
+        drop-shadow(0 0 15px var(--neon-pink))
+        drop-shadow(0 0 15px var(--tiffany-blue));
+      max-width: 100%;
+      height: auto;
+      user-select: none;
     }
 
     h1 {
@@ -91,16 +110,22 @@
       font-weight: 900;
       color: var(--text-light);
       letter-spacing: 2px;
+      line-height: 1.1;
+      user-select: text;
     }
 
     h1 span {
       color: var(--tiffany-blue);
+      user-select: text;
     }
 
     .tagline {
       font-size: 1.25rem;
       margin-top: 1rem;
       line-height: 1.6;
+      font-weight: 600;
+      user-select: text;
+      white-space: pre-line;
     }
 
     .socials {
@@ -111,15 +136,24 @@
       flex-wrap: wrap;
     }
 
-    .socials img {
-      width: 40px;
-      transition: transform 0.3s ease, filter 0.3s ease;
+    .socials a {
+      display: inline-block;
       filter: drop-shadow(0 0 5px #fff);
+      transition: transform 0.3s ease, filter 0.3s ease;
     }
 
-    .socials img:hover {
+    .socials a:hover,
+    .socials a:focus {
       transform: scale(1.1);
       filter: brightness(1.5) drop-shadow(0 0 8px #fff);
+      outline: none;
+    }
+
+    .socials img {
+      width: 40px;
+      height: 40px;
+      display: block;
+      user-select: none;
     }
 
     .watch-btn {
@@ -129,22 +163,30 @@
       background: linear-gradient(45deg, var(--tiffany-blue), var(--neon-pink));
       color: #fff;
       border-radius: 30px;
-      font-weight: bold;
+      font-weight: 700;
       text-decoration: none;
       box-shadow: 0 0 15px var(--neon-pink);
       transition: background 0.3s ease;
+      user-select: none;
     }
 
-    .watch-btn:hover {
+    .watch-btn:hover,
+    .watch-btn:focus {
       background: linear-gradient(45deg, var(--neon-pink), var(--tiffany-blue));
+      outline: none;
     }
 
     .stream-wrapper {
       width: 50%;
       max-width: 960px;
-      margin: 3rem auto;
+      margin: 3rem auto 0;
       aspect-ratio: 16 / 9;
       position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow:
+        0 0 20px var(--tiffany-blue),
+        0 0 30px var(--neon-pink);
     }
 
     .stream-loading {
@@ -154,22 +196,19 @@
       transform: translate(-50%, -50%);
       font-size: 1.25rem;
       color: var(--tiffany-blue);
-      font-weight: bold;
+      font-weight: 700;
       z-index: 2;
-      animation: fadeIn 1s ease-in-out infinite alternate;
+      animation: fadeIn 1.5s ease-in-out infinite alternate;
+      user-select: none;
     }
 
     iframe.stream-placeholder {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
-      border: 4px solid var(--tiffany-blue);
-      border-radius: 12px;
-      background-color: #111;
+      border: none;
       display: block;
       animation: borderPulse 3s infinite ease-in-out;
+      background-color: #111;
     }
 
     .animated-logo {
@@ -180,34 +219,20 @@
       animation: pulseBounce 3s ease-in-out infinite;
       user-select: none;
       z-index: 10;
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
-        gap: 1rem;
-        padding-top: 1rem;
-      }
-
-      .stream-wrapper {
-        width: 90%;
-      }
-
-      .animated-logo {
-        display: none;
-      }
+      pointer-events: none;
     }
 
     footer {
       text-align: center;
       padding: 1.5rem;
       color: #ccc;
-      background-color: #00000066;
+      background-color: #000000cc;
       font-size: 0.95rem;
       border-top: 1px solid var(--tiffany-blue);
-      margin-top: 3rem;
+      user-select: none;
     }
 
+    /* Animations */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -244,14 +269,52 @@
         filter: drop-shadow(0 0 20px var(--neon-pink));
       }
     }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 1rem;
+        width: 100%;
+      }
+
+      .hero {
+        padding: 3rem 1rem 5rem;
+      }
+
+      .stream-wrapper {
+        width: 90%;
+        margin: 2rem auto 0;
+      }
+
+      .main-logo {
+        width: 140px;
+        margin-bottom: 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .tagline {
+        font-size: 1rem;
+      }
+
+      .animated-logo {
+        display: none;
+      }
+    }
   </style>
   <script>
     window.addEventListener('load', () => {
       const iframe = document.querySelector('.stream-placeholder');
       const loader = document.querySelector('.stream-loading');
-      iframe.addEventListener('load', () => {
-        loader.style.display = 'none';
-      });
+      if (iframe && loader) {
+        iframe.addEventListener('load', () => {
+          loader.style.display = 'none';
+        });
+      }
     });
   </script>
 </head>
@@ -260,10 +323,8 @@
   <nav class="navbar" role="navigation" aria-label="Main Navigation">
     <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
     <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="index.html" class="active" aria-current="page">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="stream.html">Stream</a></li>
-      <li><a href="events.html">Events</a></li>
       <li><a href="shop.html">Shop</a></li>
       <li><a href="community.html">Community</a></li>
       <li><a href="redwood.html">Redwood OG RP</a></li>
@@ -278,9 +339,11 @@
       alt="JHQ Logo"
       class="main-logo"
       loading="lazy"
+      width="180"
+      height="180"
     />
     <h1 id="home-title">WELCOME TO<br /><span>JAXSONHQ</span></h1>
-    <p class="tagline">
+    <p class="tagline" aria-label="Site tagline">
       Streaming Chaos<br />
       Building Community<br />
       Built Different. Held Together. #FAMILY
@@ -288,28 +351,54 @@
 
     <!-- Social Media Icons -->
     <div class="socials" aria-label="Social media links">
-      <a href="https://twitch.tv/jaxsonhq" target="_blank"><img src="https://i.imgur.com/Tg6TtXZ.png" alt="Twitch" /></a>
-      <a href="https://discord.gg/6c4VnbP4qq" target="_blank"><img src="https://i.imgur.com/RBqBRE6.png" alt="Discord" /></a>
-      <a href="https://tiktok.com/@jaxsonhq" target="_blank"><img src="https://i.imgur.com/uER5fLF.png" alt="TikTok" /></a>
-      <a href="https://youtube.com/@jaxsonhq" target="_blank"><img src="https://i.imgur.com/kWjh1GR.png" alt="YouTube" /></a>
+      <a href="https://twitch.tv/jaxsonhq" target="_blank" rel="noopener noreferrer" aria-label="Twitch">
+        <img src="https://i.imgur.com/Tg6TtXZ.png" alt="Twitch" loading="lazy" width="40" height="40" />
+      </a>
+      <a href="https://discord.gg/6c4VnbP4qq" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+        <img src="https://i.imgur.com/RBqBRE6.png" alt="Discord" loading="lazy" width="40" height="40" />
+      </a>
+      <a href="https://tiktok.com/@jaxsonhq" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <img src="https://i.imgur.com/uER5fLF.png" alt="TikTok" loading="lazy" width="40" height="40" />
+      </a>
+      <a href="https://youtube.com/@jaxsonhq" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <img src="https://i.imgur.com/kWjh1GR.png" alt="YouTube" loading="lazy" width="40" height="40" />
+      </a>
     </div>
 
-    <a class="watch-btn" href="https://twitch.tv/jaxsonhq" target="_blank">🎥 Watch Live</a>
+    <a
+      class="watch-btn"
+      href="https://twitch.tv/jaxsonhq"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Watch JaxsonHQ live on Twitch"
+    >
+      🎥 Watch Live
+    </a>
 
     <!-- Twitch Embed -->
-    <div class="stream-wrapper">
-      <div class="stream-loading">Loading stream...</div>
+    <div class="stream-wrapper" aria-label="Live Twitch stream player">
+      <div class="stream-loading" aria-live="polite" aria-atomic="true">Loading stream...</div>
       <iframe
         class="stream-placeholder"
         src="https://player.twitch.tv/?channel=jaxsonhq&parent=yourdomain.com"
         allowfullscreen
         frameborder="0"
         title="JaxsonHQ Twitch Stream"
+        loading="lazy"
+        aria-hidden="false"
       ></iframe>
     </div>
 
     <!-- Floating Logo -->
-    <img src="https://i.imgur.com/Fo2UMPk.png" alt="JHQ Animated Logo" class="animated-logo" />
+    <img
+      src="https://i.imgur.com/Fo2UMPk.png"
+      alt="JHQ Animated Logo"
+      class="animated-logo"
+      aria-hidden="true"
+      loading="lazy"
+      width="150"
+      height="150"
+    />
   </section>
 
   <!-- Footer -->
