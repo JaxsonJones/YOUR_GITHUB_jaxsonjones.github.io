@@ -1,48 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="images/favicon.ico" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>JaxsonHQ | Home</title>
+  <link rel="icon" href="images/favicon.ico" />
   <style>
-    /* CSS start */
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes borderPulse {
-      0% {
-        border-color: #00e5e5;
-        box-shadow: 0 0 10px #00e5e5;
-      }
-      50% {
-        border-color: #ff007f;
-        box-shadow: 0 0 20px #ff007f;
-      }
-      100% {
-        border-color: #00e5e5;
-        box-shadow: 0 0 10px #00e5e5;
-      }
-    }
-
-    @keyframes pulseBounce {
-      0%, 100% {
-        transform: scale(1);
-        filter: drop-shadow(0 0 10px #00e5e5);
-      }
-      50% {
-        transform: scale(1.1);
-        filter: drop-shadow(0 0 20px #ff007f);
-      }
+    :root {
+      --neon-pink: #ff4fc2;
+      --tiffany-blue: #40e0d0;
+      --deep-purple: #1e003b;
+      --text-light: #ffffff;
     }
 
     * {
@@ -52,15 +20,11 @@
     }
 
     body {
-      background: radial-gradient(circle at center, #2b0e3e 0%, #000 100%);
+      background: radial-gradient(circle at center, var(--deep-purple), #000);
       font-family: 'Segoe UI', sans-serif;
-      color: white;
+      color: var(--text-light);
       text-align: center;
       overflow-x: hidden;
-    }
-
-    .fade-in {
-      animation: fadeIn 1.5s ease-in-out both;
     }
 
     .navbar {
@@ -68,29 +32,26 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 3rem;
-      background: transparent;
+      background: #000000cc;
+      border-bottom: 2px solid var(--tiffany-blue);
       flex-wrap: wrap;
     }
 
     .logo {
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: bold;
-      color: white;
-      border: 2px solid white;
+      color: var(--text-light);
+      border: 2px solid var(--text-light);
       padding: 0.25rem 0.75rem;
-      border-radius: 8px;
-      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      background-color: #ffffff10;
       text-decoration: none;
-      cursor: pointer;
-      display: inline-block;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: all 0.3s ease;
     }
 
-    .logo:hover,
-    .logo:focus {
-      background-color: #00e5e5;
+    .logo:hover {
+      background-color: var(--tiffany-blue);
       color: #000;
-      outline: none;
     }
 
     .nav-links {
@@ -98,52 +59,48 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      justify-content: center;
     }
 
     .nav-links li a {
       text-decoration: none;
-      color: white;
+      color: var(--text-light);
       font-weight: 600;
-      transition: color 0.3s ease;
-      padding: 0.25rem 0.5rem;
-      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
     }
 
     .nav-links li a:hover,
     .nav-links li a.active {
-      color: #00e5e5;
-      background-color: rgba(0, 229, 229, 0.15);
+      background: rgba(64, 224, 208, 0.1);
+      color: var(--tiffany-blue);
     }
 
     .hero {
       padding: 4rem 2rem;
-      position: relative;
     }
 
     .main-logo {
-      width: 160px;
-      filter: drop-shadow(0 0 20px #ff007f) drop-shadow(0 0 20px #00e5e5);
-      margin-bottom: 1.5rem;
-      max-width: 100%;
-      height: auto;
+      width: 180px;
+      margin: 0 auto 1.5rem;
       animation: pulseBounce 3s ease-in-out infinite;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
+      filter: drop-shadow(0 0 15px var(--neon-pink)) drop-shadow(0 0 15px var(--tiffany-blue));
+    }
+
+    h1 {
+      font-size: 2.75rem;
+      font-weight: 900;
+      color: var(--text-light);
+      letter-spacing: 2px;
     }
 
     h1 span {
-      font-size: 2.5rem;
-      color: #fff;
-      font-weight: 900;
-      letter-spacing: 2px;
+      color: var(--tiffany-blue);
     }
 
     .tagline {
       font-size: 1.25rem;
       margin-top: 1rem;
-      line-height: 1.8;
+      line-height: 1.6;
     }
 
     .socials {
@@ -167,19 +124,19 @@
 
     .watch-btn {
       display: inline-block;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       padding: 0.75rem 2rem;
-      background: linear-gradient(45deg, #00e5e5, #ff007f);
-      color: white;
+      background: linear-gradient(45deg, var(--tiffany-blue), var(--neon-pink));
+      color: #fff;
       border-radius: 30px;
       font-weight: bold;
       text-decoration: none;
-      box-shadow: 0 0 15px #ff007f;
+      box-shadow: 0 0 15px var(--neon-pink);
       transition: background 0.3s ease;
     }
 
     .watch-btn:hover {
-      background: linear-gradient(45deg, #ff007f, #00e5e5);
+      background: linear-gradient(45deg, var(--neon-pink), var(--tiffany-blue));
     }
 
     .stream-wrapper {
@@ -190,25 +147,13 @@
       position: relative;
     }
 
-    @media (max-width: 768px) {
-      .stream-wrapper {
-        width: 90%;
-        max-width: none;
-      }
-      .nav-links {
-        flex-direction: column;
-        gap: 1rem;
-        padding-top: 1rem;
-      }
-    }
-
     .stream-loading {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 1.25rem;
-      color: #00e5e5;
+      color: var(--tiffany-blue);
       font-weight: bold;
       z-index: 2;
       animation: fadeIn 1s ease-in-out infinite alternate;
@@ -220,7 +165,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      border: 4px solid #00e5e5;
+      border: 4px solid var(--tiffany-blue);
       border-radius: 12px;
       background-color: #111;
       display: block;
@@ -233,14 +178,70 @@
       bottom: 2rem;
       right: 2rem;
       animation: pulseBounce 3s ease-in-out infinite;
-      cursor: default;
       user-select: none;
       z-index: 10;
     }
 
     @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 1rem;
+      }
+
+      .stream-wrapper {
+        width: 90%;
+      }
+
       .animated-logo {
         display: none;
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #ccc;
+      background-color: #00000066;
+      font-size: 0.95rem;
+      border-top: 1px solid var(--tiffany-blue);
+      margin-top: 3rem;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes borderPulse {
+      0% {
+        border-color: var(--tiffany-blue);
+        box-shadow: 0 0 10px var(--tiffany-blue);
+      }
+      50% {
+        border-color: var(--neon-pink);
+        box-shadow: 0 0 20px var(--neon-pink);
+      }
+      100% {
+        border-color: var(--tiffany-blue);
+        box-shadow: 0 0 10px var(--tiffany-blue);
+      }
+    }
+
+    @keyframes pulseBounce {
+      0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px var(--tiffany-blue));
+      }
+      50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 20px var(--neon-pink));
       }
     }
   </style>
@@ -255,74 +256,65 @@
   </script>
 </head>
 <body>
-  <header>
-    <nav class="navbar" role="navigation" aria-label="Main Navigation">
-      <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="stream.html">Stream</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="community.html">Community</a></li>
-        <li><a href="redwood.html">Redwood OG RP</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Navbar -->
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="stream.html">Stream</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="redwood.html">Redwood OG RP</a></li>
+      <li><a href="characters.html">Characters</a></li>
+    </ul>
+  </nav>
 
-  <section class="hero fade-in" role="main" aria-labelledby="home-title">
+  <!-- Hero Section -->
+  <section class="hero" role="main" aria-labelledby="home-title">
     <img
       src="https://i.imgur.com/Fo2UMPk.png"
       alt="JHQ Logo"
       class="main-logo"
       loading="lazy"
     />
-    <h1 id="home-title">
-      WELCOME TO<br /><span>JAXSONHQ</span>
-    </h1>
+    <h1 id="home-title">WELCOME TO<br /><span>JAXSONHQ</span></h1>
     <p class="tagline">
       Streaming Chaos<br />
       Building Community<br />
       Built Different. Held Together. #FAMILY
     </p>
 
+    <!-- Social Media Icons -->
     <div class="socials" aria-label="Social media links">
-      <a href="https://twitch.tv/jaxsonhq" target="_blank" rel="noopener noreferrer">
-        <img src="https://i.imgur.com/Tg6TtXZ.png" alt="Twitch" loading="lazy" />
-      </a>
-      <a href="https://discord.gg/6c4VnbP4qq" target="_blank" rel="noopener noreferrer">
-        <img src="https://i.imgur.com/RBqBRE6.png" alt="Discord" loading="lazy" />
-      </a>
-      <a href="https://tiktok.com/@jaxsonhq" target="_blank" rel="noopener noreferrer">
-        <img src="https://i.imgur.com/uER5fLF.png" alt="TikTok" loading="lazy" />
-      </a>
-      <a href="https://youtube.com/@jaxsonhq" target="_blank" rel="noopener noreferrer">
-        <img src="https://i.imgur.com/kWjh1GR.png" alt="YouTube" loading="lazy" />
-      </a>
+      <a href="https://twitch.tv/jaxsonhq" target="_blank"><img src="https://i.imgur.com/Tg6TtXZ.png" alt="Twitch" /></a>
+      <a href="https://discord.gg/6c4VnbP4qq" target="_blank"><img src="https://i.imgur.com/RBqBRE6.png" alt="Discord" /></a>
+      <a href="https://tiktok.com/@jaxsonhq" target="_blank"><img src="https://i.imgur.com/uER5fLF.png" alt="TikTok" /></a>
+      <a href="https://youtube.com/@jaxsonhq" target="_blank"><img src="https://i.imgur.com/kWjh1GR.png" alt="YouTube" /></a>
     </div>
 
-    <a class="watch-btn" href="https://twitch.tv/jaxsonhq" target="_blank" rel="noopener noreferrer"
-      >🎥 Watch Live</a
-    >
+    <a class="watch-btn" href="https://twitch.tv/jaxsonhq" target="_blank">🎥 Watch Live</a>
 
+    <!-- Twitch Embed -->
     <div class="stream-wrapper">
       <div class="stream-loading">Loading stream...</div>
       <iframe
         class="stream-placeholder"
-        src="https://player.twitch.tv/?channel=jaxsonhq&parent=jaxsonhq.com"
+        src="https://player.twitch.tv/?channel=jaxsonhq&parent=yourdomain.com"
         allowfullscreen
         frameborder="0"
-        loading="lazy"
         title="JaxsonHQ Twitch Stream"
       ></iframe>
     </div>
 
-    <img
-      src="https://i.imgur.com/Fo2UMPk.png"
-      alt="JHQ Animated Logo"
-      class="animated-logo"
-      loading="lazy"
-    />
+    <!-- Floating Logo -->
+    <img src="https://i.imgur.com/Fo2UMPk.png" alt="JHQ Animated Logo" class="animated-logo" />
   </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 JaxsonHQ | Built Different. Held Together. <strong>#FAMILY</strong>
+  </footer>
 </body>
 </html>
