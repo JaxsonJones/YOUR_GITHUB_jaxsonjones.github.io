@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JaxsonHQ | Characters</title>
   <link rel="icon" href="images/favicon.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     :root {
       --neon-pink: #ff4fc2;
@@ -91,6 +92,11 @@
       padding: 1.5rem;
       box-shadow: 0 0 20px var(--neon-pink);
       animation: fadeIn 1s ease both;
+      transition: transform 0.3s ease;
+    }
+
+    .bio-card:hover {
+      transform: scale(1.02);
     }
 
     .bio-card img {
@@ -114,6 +120,22 @@
 
     .bio-card p strong {
       color: var(--neon-pink);
+    }
+
+    .more-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: var(--neon-pink);
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .more-btn:hover {
+      background-color: var(--tiffany-blue);
     }
 
     footer {
@@ -148,7 +170,6 @@
   </style>
 </head>
 <body>
-  <!-- Navbar -->
   <nav class="navbar">
     <a href="index.html" class="logo">JHQ</a>
     <ul class="nav-links">
@@ -161,31 +182,30 @@
     </ul>
   </nav>
 
-  <!-- Page Title -->
   <h1>RP Character Bios</h1>
 
-  <!-- Character Cards -->
   <div class="bio-container">
-    <!-- Character 1: Jaxson -->
+    <!-- Character: Jaxson -->
     <div class="bio-card">
       <img src="https://i.imgur.com/yourimage2.png" alt="Jaxson">
       <h2>Jaxson</h2>
       <p><strong>Role:</strong> Content Creator / Chaos Queen</p>
       <p><strong>Vibe:</strong> Funny, Flirty, Unpredictable</p>
       <p><strong>Story:</strong> Known for turning the streets into a stage. From racing to singing to blowing stuff up, Jaxson lives for the spotlight and drives the wildest RP moments across the city and county.</p>
+      <a href="jaxson.html" class="more-btn">Read More</a>
     </div>
 
-    <!-- Character 3: Rick O'Shea -->
+    <!-- Character: Rick O'Shea -->
     <div class="bio-card">
-      <img src="https://imgur.com/kRrxvwj" alt="Rick O'Shea">
+      <img src="https://i.imgur.com/kRrxvwj.png" alt="Rick O'Shea">
       <h2>Rick O'Shea</h2>
       <p><strong>Role:</strong> LSPD Officer</p>
       <p><strong>Vibe:</strong> Lipsy, Wild, Outlandish</p>
       <p><strong>Story:</strong> Is he arresting criminals—or helping them escape? Rick O'Shea walks the tightrope between law and chaos with a wink and a stun gun. You never know if he's backing you up or busting you down. One thing's for sure: he's unforgettable.</p>
+      <a href="rick.html" class="more-btn">Read More</a>
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
     &copy; 2025 JaxsonHQ | All characters are a chaotic work of fiction.
   </footer>
