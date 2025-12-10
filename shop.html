@@ -20,7 +20,7 @@
     }
 
     body {
-      background: radial-gradient(circle at center, var(--deep-purple), #000);
+      background: radial-gradient(circle at center, var(--deep-purple), #0a0a0a);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: var(--text-light);
       text-align: center;
@@ -32,9 +32,10 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
+    /* NAVBAR */
     .navbar {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       padding: 1.5rem 3rem;
       background: #000000cc;
@@ -44,27 +45,6 @@
       top: 0;
       z-index: 1000;
       backdrop-filter: saturate(180%) blur(10px);
-      user-select: none;
-    }
-
-    .logo {
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--text-light);
-      border: 2px solid var(--text-light);
-      padding: 0.25rem 0.75rem;
-      border-radius: 10px;
-      background-color: #ffffff10;
-      text-decoration: none;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: none;
-    }
-
-    .logo:hover,
-    .logo:focus {
-      background-color: var(--tiffany-blue);
-      color: #000;
-      outline: none;
     }
 
     .nav-links {
@@ -81,7 +61,6 @@
       padding: 0.5rem 1rem;
       border-radius: 8px;
       transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: none;
     }
 
     .nav-links li a:hover,
@@ -92,128 +71,214 @@
       outline: none;
     }
 
-    main {
+    /* HERO SECTION */
+    .hero {
       flex-grow: 1;
-      max-width: 700px;
-      margin: 4rem auto 6rem;
-      padding: 0 1rem;
-      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 6rem 2rem;
     }
 
-    h1 {
+    .main-logo {
+      width: 320px;
+      max-width: 85%;
+      height: auto;
+      animation: pulseGlow 3s ease-in-out infinite, fadeIn 1.2s ease-out forwards;
+      opacity: 0;
+      filter:
+        drop-shadow(0 0 40px var(--neon-pink))
+        drop-shadow(0 0 40px var(--tiffany-blue));
+      user-select: none;
+      margin-bottom: 2rem;
+    }
+
+    .page-title {
+      font-size: 2.25rem;
       font-weight: 900;
-      letter-spacing: 2px;
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
+      color: #fff;
       text-align: center;
-      user-select: text;
-      color: var(--text-light);
+      animation: fadeIn 1.4s ease-out forwards;
+      opacity: 0;
+    }
+
+    .shop-description {
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin-bottom: 3rem;
+      color: #ddd;
+      line-height: 1.5;
+      animation: fadeIn 1.6s ease-out forwards;
+      animation-delay: 0.3s;
+      opacity: 0;
+      text-align: center;
     }
 
     .shop-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+
+    .shop-item {
+      background: #000000aa;
+      padding: 1.5rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 15px var(--tiffany-blue);
+      width: 100%;
+      text-align: left;
       color: #ddd;
-      font-size: 1.15rem;
-      line-height: 1.6;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .shop-list h2 {
+    .shop-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 25px var(--neon-pink);
+    }
+
+    .shop-item h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
       color: var(--neon-pink);
-      margin-bottom: 1rem;
-      user-select: text;
+      margin-bottom: 0.5rem;
     }
 
-    .shop-list ul {
-      list-style-type: disc;
-      padding-left: 1.5rem;
-      user-select: text;
+    .shop-item p {
+      font-size: 1.1rem;
+      line-height: 1.5;
     }
 
-    .shop-list p {
-      margin-top: 1.5rem;
-      font-size: 1rem;
-      text-align: center;
-    }
-
-    .shop-list a {
-      color: var(--tiffany-blue);
+    .shop-link {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(45deg, var(--tiffany-blue), var(--neon-pink));
+      color: #fff;
+      font-weight: 700;
+      border-radius: 30px;
       text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
+      box-shadow: 0 0 15px var(--neon-pink);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .shop-list a:hover,
-    .shop-list a:focus {
-      color: var(--neon-pink);
-      outline: none;
+    .shop-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px var(--tiffany-blue);
     }
 
+    /* FOOTER */
     footer {
       text-align: center;
       padding: 1.5rem;
       color: #ccc;
-      background-color: #00000066;
+      background-color: #000000cc;
       font-size: 0.95rem;
       border-top: 1px solid var(--tiffany-blue);
       margin-top: auto;
       user-select: none;
     }
 
+    /* ANIMATIONS */
+    @keyframes pulseGlow {
+      0%, 100% {
+        transform: scale(1);
+        filter:
+          drop-shadow(0 0 25px var(--tiffany-blue))
+          drop-shadow(0 0 25px var(--neon-pink));
+      }
+      50% {
+        transform: scale(1.08);
+        filter:
+          drop-shadow(0 0 50px var(--tiffany-blue))
+          drop-shadow(0 0 50px var(--neon-pink));
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* MOBILE */
     @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
-        gap: 1rem;
-        padding-top: 1rem;
+      .main-logo {
+        width: 230px;
       }
-
-      main {
-        margin: 3rem auto 5rem;
-        max-width: 100%;
-        text-align: center;
+      .page-title {
+        font-size: 1.75rem;
       }
-
-      .shop-list {
-        text-align: center;
+      .shop-description {
+        font-size: 1rem;
+        padding: 0 1rem;
       }
-
-      .shop-list ul {
-        padding-left: 0;
-        list-style-position: inside;
+      .shop-item {
+        padding: 1rem 1.5rem;
+      }
+      .shop-link {
+        padding: 0.8rem 2rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar" role="navigation" aria-label="Main Navigation">
-    <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
+
+  <!-- Navbar -->
+  <nav class="navbar">
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="shop.html" class="active" aria-current="page">Shop</a></li>
       <li><a href="community.html">Community</a></li>
-      <li><a href="redwood.html">Redwood OG RP</a></li>
-      <li><a href="characters.html">Characters</a></li>
+      <li><a href="shop.html" class="active">Shop</a></li>
     </ul>
   </nav>
 
-  <main>
-    <h1 id="shop-title">Shop JaxsonHQ Merch</h1>
-    <section class="shop-list" aria-labelledby="shop-title">
-      <h2>Featured Items</h2>
-      <ul>
-        <li><strong>Tropical Vibes Jax & Rocky Graphic Tee</strong> – Palm trees, waves, and a partial sun</li>
-        <li><strong>JAXSONHQ Bold Logo Tee</strong> – Perfect for gamers</li>
-        <li><strong>JHQ Think Different Trucker Hat</strong> – Bold pink 'JHQ' letters and a motivational tagline</li>
-        <li><strong>JAXSONHQ Desk Mat</strong> – Built Different. Held Together. #FAMILY</li>
-      </ul>
-      <p>
-        Visit <a href="https://jaxsonhq-shop.fourthwall.com" target="_blank" rel="noopener noreferrer">Fourthwall Store</a> to shop all merch and support the community.
-      </p>
-    </section>
-  </main>
+  <!-- Hero Section -->
+  <section class="hero">
+    <img
+      src="https://i.imgur.com/JeRupDB.png"
+      alt="JaxsonHQ Logo"
+      class="main-logo"
+    />
+    <h1 class="page-title">JaxsonHQ Merch</h1>
+    <p class="shop-description">
+      Check out the latest JaxsonHQ gear! Support the channel and grab your favorite items below.
+    </p>
 
+    <!-- Shop Items -->
+    <div class="shop-list">
+      <div class="shop-item">
+        <h3>Tropical Vibes Jax & Rocky Graphic Tee</h3>
+        <p>Palm trees, waves, and a partial sun—perfect for summer streaming vibes.</p>
+      </div>
+      <div class="shop-item">
+        <h3>JAXSONHQ Bold Logo Tee</h3>
+        <p>Show your support for the channel with this clean gamer-friendly shirt.</p>
+      </div>
+      <div class="shop-item">
+        <h3>JHQ Think Different Trucker Hat</h3>
+        <p>Bold pink 'JHQ' letters with a motivational tagline to keep you inspired.</p>
+      </div>
+      <div class="shop-item">
+        <h3>JAXSONHQ Desk Mat</h3>
+        <p>Built Different. Held Together. #FAMILY—perfect for your streaming setup.</p>
+      </div>
+    </div>
+
+    <!-- Shop Button -->
+    <a href="https://jaxsonhq-shop.fourthwall.com" target="_blank" class="shop-link">
+      🛒 Visit Store
+    </a>
+  </section>
+
+  <!-- Footer -->
   <footer>
     &copy; 2025 JaxsonHQ | Built Different. Held Together. <strong>#FAMILY</strong>
   </footer>
+
 </body>
 </html>
