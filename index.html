@@ -20,7 +20,7 @@
     }
 
     body {
-      background: linear-gradient(45deg, var(--deep-purple), #000) no-repeat center center fixed;
+      background: linear-gradient(45deg, var(--deep-purple), #000);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: var(--text-light);
       text-align: center;
@@ -31,30 +31,6 @@
       display: flex;
       flex-direction: column;
       position: relative;
-    }
-
-    /* Abstract animated shapes */
-    body::before, body::after {
-      content: '';
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      top: -50%;
-      left: -50%;
-      background: radial-gradient(circle at center, var(--tiffany-blue) 0%, transparent 70%);
-      opacity: 0.15;
-      animation: rotateShapes 60s linear infinite;
-      pointer-events: none;
-    }
-
-    body::after {
-      background: radial-gradient(circle at center, var(--neon-pink) 0%, transparent 70%);
-      animation-direction: reverse;
-    }
-
-    @keyframes rotateShapes {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
     }
 
     /* NAVBAR */
@@ -197,37 +173,17 @@
 
     /* MOBILE & TABLET */
     @media (max-width: 1024px) {
-      .hero {
-        padding: 4rem 1.5rem;
-      }
-      .main-logo {
-        width: 270px;
-      }
-      .value-prop {
-        font-size: 1.15rem;
-        padding: 0 1rem;
-      }
-      .socials img {
-        width: 40px;
-        height: 40px;
-      }
+      .hero { padding: 4rem 1.5rem; }
+      .main-logo { width: 270px; }
+      .value-prop { font-size: 1.15rem; padding: 0 1rem; }
+      .socials img { width: 40px; height: 40px; }
     }
 
     @media (max-width: 768px) {
-      .hero {
-        padding: 3rem 1rem;
-      }
-      .main-logo {
-        width: 230px;
-      }
-      .value-prop {
-        font-size: 1.05rem;
-        padding: 0 0.8rem;
-      }
-      .socials img {
-        width: 38px;
-        height: 38px;
-      }
+      .hero { padding: 3rem 1rem; }
+      .main-logo { width: 230px; }
+      .value-prop { font-size: 1.05rem; padding: 0 0.8rem; }
+      .socials img { width: 38px; height: 38px; }
     }
   </style>
 </head>
