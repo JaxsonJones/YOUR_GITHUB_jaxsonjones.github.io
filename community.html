@@ -32,9 +32,10 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
+    /* NAVBAR */
     .navbar {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       padding: 1.5rem 3rem;
       background: #000000cc;
@@ -44,27 +45,6 @@
       top: 0;
       z-index: 1000;
       backdrop-filter: saturate(180%) blur(10px);
-      user-select: none;
-    }
-
-    .logo {
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--text-light);
-      border: 2px solid var(--text-light);
-      padding: 0.25rem 0.75rem;
-      border-radius: 10px;
-      background-color: #ffffff10;
-      text-decoration: none;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: none;
-    }
-
-    .logo:hover,
-    .logo:focus {
-      background-color: var(--tiffany-blue);
-      color: #000;
-      outline: none;
     }
 
     .nav-links {
@@ -81,7 +61,6 @@
       padding: 0.5rem 1rem;
       border-radius: 8px;
       transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: none;
     }
 
     .nav-links li a:hover,
@@ -92,124 +71,182 @@
       outline: none;
     }
 
-    main {
+    /* HERO SECTION */
+    .hero {
       flex-grow: 1;
-      max-width: 700px;
-      margin: 4rem auto 6rem;
-      padding: 0 1rem;
-      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 6rem 2rem;
     }
 
-    h1 {
+    .main-logo {
+      width: 320px;
+      max-width: 85%;
+      height: auto;
+      animation: pulseGlow 3s ease-in-out infinite, fadeIn 1.2s ease-out forwards;
+      opacity: 0;
+      filter:
+        drop-shadow(0 0 40px var(--neon-pink))
+        drop-shadow(0 0 40px var(--tiffany-blue));
+      user-select: none;
+      margin-bottom: 2rem;
+    }
+
+    .page-title {
+      font-size: 2.25rem;
       font-weight: 900;
-      letter-spacing: 2px;
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
+      color: #fff;
       text-align: center;
-      user-select: text;
-      color: var(--text-light);
+      animation: fadeIn 1.4s ease-out forwards;
+      opacity: 0;
     }
 
-    .community-info {
+    .page-description {
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin-bottom: 3rem;
       color: #ddd;
-      font-size: 1.15rem;
-      line-height: 1.6;
-      user-select: text;
+      line-height: 1.5;
+      animation: fadeIn 1.6s ease-out forwards;
+      animation-delay: 0.3s;
+      opacity: 0;
+      text-align: center;
     }
 
-    .community-info ul {
-      list-style-type: disc;
-      padding-left: 1.5rem;
-      margin-top: 1rem;
+    /* COMMUNITY GRID */
+    .community-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto 3rem;
     }
 
-    .community-info ul li {
-      margin-bottom: 0.6rem;
+    .community-card {
+      background: #000000aa;
+      padding: 1.5rem;
+      border-radius: 20px;
+      box-shadow: 0 0 15px var(--tiffany-blue);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
     }
 
-    .community-info a {
-      color: var(--tiffany-blue);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
+    .community-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 25px var(--neon-pink);
     }
 
-    .community-info a:hover,
-    .community-info a:focus {
+    .community-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
       color: var(--neon-pink);
-      outline: none;
+      margin-bottom: 0.5rem;
     }
 
+    .community-card p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #ddd;
+    }
+
+    /* FOOTER */
     footer {
       text-align: center;
       padding: 1.5rem;
       color: #ccc;
-      background-color: #00000066;
+      background-color: #000000cc;
       font-size: 0.95rem;
       border-top: 1px solid var(--tiffany-blue);
       margin-top: auto;
       user-select: none;
     }
 
+    /* ANIMATIONS */
+    @keyframes pulseGlow {
+      0%, 100% {
+        transform: scale(1);
+        filter:
+          drop-shadow(0 0 25px var(--tiffany-blue))
+          drop-shadow(0 0 25px var(--neon-pink));
+      }
+      50% {
+        transform: scale(1.08);
+        filter:
+          drop-shadow(0 0 50px var(--tiffany-blue))
+          drop-shadow(0 0 50px var(--neon-pink));
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
-        gap: 1rem;
-        padding-top: 1rem;
+      .main-logo {
+        width: 230px;
       }
-
-      main {
-        margin: 3rem auto 5rem;
-        max-width: 100%;
-        text-align: center;
+      .page-title {
+        font-size: 1.75rem;
       }
-
-      .community-info {
-        text-align: center;
+      .page-description {
+        font-size: 1rem;
+        padding: 0 1rem;
       }
-
-      .community-info ul {
-        padding-left: 0;
-        list-style-position: inside;
+      .community-grid {
+        gap: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar" role="navigation" aria-label="Main Navigation">
-    <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
+
+  <!-- Navbar -->
+  <nav class="navbar">
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
+      <li><a href="community.html" class="active">Community</a></li>
       <li><a href="shop.html">Shop</a></li>
-      <li><a href="community.html" class="active" aria-current="page">Community</a></li>
-      <li><a href="redwood.html">Redwood OG RP</a></li>
-      <li><a href="characters.html">Characters</a></li>
     </ul>
   </nav>
 
-  <main>
-    <h1 id="community-title">Join the JaxsonHQ Family</h1>
-    <section class="community-info" aria-labelledby="community-title">
-      <p>
-        The heart of JaxsonHQ is the community. Whether you're a streamer,
-        gamer, or fan, you’re welcome here.
-      </p>
-      <ul>
-        <li>Join our Discord server for chat, events, and support.</li>
-        <li>Participate in regular giveaways and contests.</li>
-        <li>Connect with other fans across Twitch, TikTok, and YouTube.</li>
-        <li>Stay updated with the latest events and streams.</li>
-      </ul>
-      <p>
-        <a href="https://discord.gg/6c4VnbP4qq" target="_blank" rel="noopener noreferrer">Join the Discord</a>
-      </p>
-    </section>
-  </main>
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="https://i.imgur.com/JeRupDB.png" alt="JaxsonHQ Logo" class="main-logo" />
+    <h1 class="page-title">Join the Community</h1>
+    <p class="page-description">
+      Connect with other members, get updates, and be part of the JaxsonHQ family!
+    </p>
 
+    <!-- Community Cards -->
+    <div class="community-grid">
+      <div class="community-card">
+        <h3>Discord</h3>
+        <p>Join our lively server with chat channels, community events, and live streams.</p>
+      </div>
+      <div class="community-card">
+        <h3>Twitch Chat</h3>
+        <p>Participate in streams, get shoutouts, and interact with JaxsonHQ live.</p>
+      </div>
+      <div class="community-card">
+        <h3>Social Media</h3>
+        <p>Follow us on TikTok, Instagram, and YouTube for exclusive content.</p>
+      </div>
+      <div class="community-card">
+        <h3>Fan Contests</h3>
+        <p>Get involved in giveaways, art contests, and community challenges.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
     &copy; 2025 JaxsonHQ | Built Different. Held Together. <strong>#FAMILY</strong>
   </footer>
+
 </body>
 </html>
