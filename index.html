@@ -20,7 +20,7 @@
     }
 
     body {
-      background: radial-gradient(circle at center, var(--deep-purple), #000);
+      background: linear-gradient(45deg, var(--deep-purple), #000) no-repeat center center fixed;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: var(--text-light);
       text-align: center;
@@ -30,14 +30,40 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
+    /* Abstract animated shapes */
+    body::before, body::after {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: radial-gradient(circle at center, var(--tiffany-blue) 0%, transparent 70%);
+      opacity: 0.15;
+      animation: rotateShapes 60s linear infinite;
+      pointer-events: none;
+    }
+
+    body::after {
+      background: radial-gradient(circle at center, var(--neon-pink) 0%, transparent 70%);
+      animation-direction: reverse;
+    }
+
+    @keyframes rotateShapes {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* NAVBAR */
     .navbar {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      padding: 1.5rem 3rem;
-      background: #000000cc;
+      padding: 1.2rem 2rem;
+      background: rgba(0, 0, 0, 0.6);
       border-bottom: 2px solid var(--tiffany-blue);
       flex-wrap: wrap;
       z-index: 1000;
@@ -46,31 +72,12 @@
       backdrop-filter: saturate(180%) blur(10px);
     }
 
-    .logo {
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--text-light);
-      border: 2px solid var(--text-light);
-      padding: 0.25rem 0.75rem;
-      border-radius: 10px;
-      background-color: #ffffff10;
-      text-decoration: none;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: none;
-    }
-
-    .logo:hover,
-    .logo:focus {
-      background-color: var(--tiffany-blue);
-      color: #000;
-      outline: none;
-    }
-
     .nav-links {
       list-style: none;
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
+      justify-content: center;
     }
 
     .nav-links li a {
@@ -88,46 +95,46 @@
       color: var(--tiffany-blue);
     }
 
+    /* HERO SECTION */
     .hero {
-      padding: 4rem 2rem 6rem;
       flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 6rem 2rem;
+      text-shadow: 0 0 8px #000, 0 0 10px #000;
+      position: relative;
+      z-index: 1;
     }
 
     .main-logo {
-      width: 180px;
-      margin: 0 auto 1.5rem;
-      animation: pulseBounce 3s ease-in-out infinite;
-      filter:
-        drop-shadow(0 0 15px var(--neon-pink))
-        drop-shadow(0 0 15px var(--tiffany-blue));
-      max-width: 100%;
+      width: 320px;
+      max-width: 85%;
       height: auto;
+      animation: pulseGlow 3s ease-in-out infinite, fadeIn 1.2s ease-out forwards;
+      opacity: 0;
+      filter:
+        drop-shadow(0 0 40px var(--neon-pink))
+        drop-shadow(0 0 40px var(--tiffany-blue));
       user-select: none;
+      margin-bottom: 2rem;
     }
 
-    h1 {
-      font-size: 2.75rem;
-      font-weight: 900;
-      color: var(--text-light);
-      letter-spacing: 2px;
-      line-height: 1.1;
-      user-select: text;
+    .value-prop {
+      font-size: 1.35rem;
+      max-width: 700px;
+      line-height: 1.5;
+      font-weight: 500;
+      color: #eaeaea;
+      opacity: 0;
+      animation: fadeIn 1.6s ease-out forwards;
+      animation-delay: 0.4s;
+      margin-bottom: 2.5rem;
+      text-align: center;
     }
 
-    h1 span {
-      color: var(--tiffany-blue);
-      user-select: text;
-    }
-
-    .tagline {
-      font-size: 1.25rem;
-      margin-top: 1rem;
-      line-height: 1.6;
-      font-weight: 600;
-      user-select: text;
-      white-space: pre-line;
-    }
-
+    /* SOCIAL ICONS */
     .socials {
       display: flex;
       justify-content: center;
@@ -142,268 +149,126 @@
       transition: transform 0.3s ease, filter 0.3s ease;
     }
 
-    .socials a:hover,
-    .socials a:focus {
+    .socials a:hover {
       transform: scale(1.1);
-      filter: brightness(1.5) drop-shadow(0 0 8px #fff);
-      outline: none;
+      filter: brightness(1.4) drop-shadow(0 0 8px #fff);
     }
 
     .socials img {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       display: block;
-      user-select: none;
     }
 
-    .watch-btn {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.75rem 2rem;
-      background: linear-gradient(45deg, var(--tiffany-blue), var(--neon-pink));
-      color: #fff;
-      border-radius: 30px;
-      font-weight: 700;
-      text-decoration: none;
-      box-shadow: 0 0 15px var(--neon-pink);
-      transition: background 0.3s ease;
-      user-select: none;
-    }
-
-    .watch-btn:hover,
-    .watch-btn:focus {
-      background: linear-gradient(45deg, var(--neon-pink), var(--tiffany-blue));
-      outline: none;
-    }
-
-    .stream-wrapper {
-      width: 50%;
-      max-width: 960px;
-      margin: 3rem auto 0;
-      aspect-ratio: 16 / 9;
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow:
-        0 0 20px var(--tiffany-blue),
-        0 0 30px var(--neon-pink);
-    }
-
-    .stream-loading {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.25rem;
-      color: var(--tiffany-blue);
-      font-weight: 700;
-      z-index: 2;
-      animation: fadeIn 1.5s ease-in-out infinite alternate;
-      user-select: none;
-    }
-
-    iframe.stream-placeholder {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-      animation: borderPulse 3s infinite ease-in-out;
-      background-color: #111;
-    }
-
-    .animated-logo {
-      width: 150px;
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      animation: pulseBounce 3s ease-in-out infinite;
-      user-select: none;
-      z-index: 10;
-      pointer-events: none;
-    }
-
+    /* FOOTER */
     footer {
       text-align: center;
       padding: 1.5rem;
       color: #ccc;
-      background-color: #000000cc;
+      background-color: rgba(0, 0, 0, 0.6);
       font-size: 0.95rem;
       border-top: 1px solid var(--tiffany-blue);
+      margin-top: auto;
       user-select: none;
+      position: relative;
+      z-index: 1;
     }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes borderPulse {
-      0% {
-        border-color: var(--tiffany-blue);
-        box-shadow: 0 0 10px var(--tiffany-blue);
-      }
-      50% {
-        border-color: var(--neon-pink);
-        box-shadow: 0 0 20px var(--neon-pink);
-      }
-      100% {
-        border-color: var(--tiffany-blue);
-        box-shadow: 0 0 10px var(--tiffany-blue);
-      }
-    }
-
-    @keyframes pulseBounce {
+    /* ANIMATIONS */
+    @keyframes pulseGlow {
       0%, 100% {
         transform: scale(1);
-        filter: drop-shadow(0 0 10px var(--tiffany-blue));
+        filter:
+          drop-shadow(0 0 25px var(--tiffany-blue))
+          drop-shadow(0 0 25px var(--neon-pink));
       }
       50% {
-        transform: scale(1.1);
-        filter: drop-shadow(0 0 20px var(--neon-pink));
+        transform: scale(1.08);
+        filter:
+          drop-shadow(0 0 50px var(--tiffany-blue))
+          drop-shadow(0 0 50px var(--neon-pink));
       }
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
-        gap: 1rem;
-        padding-top: 1rem;
-        width: 100%;
-      }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
+    /* MOBILE & TABLET */
+    @media (max-width: 1024px) {
       .hero {
-        padding: 3rem 1rem 5rem;
+        padding: 4rem 1.5rem;
       }
-
-      .stream-wrapper {
-        width: 90%;
-        margin: 2rem auto 0;
-      }
-
       .main-logo {
-        width: 140px;
-        margin-bottom: 1rem;
+        width: 270px;
       }
-
-      h1 {
-        font-size: 2rem;
+      .value-prop {
+        font-size: 1.15rem;
+        padding: 0 1rem;
       }
-
-      .tagline {
-        font-size: 1rem;
+      .socials img {
+        width: 40px;
+        height: 40px;
       }
+    }
 
-      .animated-logo {
-        display: none;
+    @media (max-width: 768px) {
+      .hero {
+        padding: 3rem 1rem;
+      }
+      .main-logo {
+        width: 230px;
+      }
+      .value-prop {
+        font-size: 1.05rem;
+        padding: 0 0.8rem;
+      }
+      .socials img {
+        width: 38px;
+        height: 38px;
       }
     }
   </style>
-  <script>
-    window.addEventListener('load', () => {
-      const iframe = document.querySelector('.stream-placeholder');
-      const loader = document.querySelector('.stream-loading');
-      if (iframe && loader) {
-        iframe.addEventListener('load', () => {
-          loader.style.display = 'none';
-        });
-      }
-    });
-  </script>
 </head>
 <body>
+
   <!-- Navbar -->
-  <nav class="navbar" role="navigation" aria-label="Main Navigation">
-    <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
+  <nav class="navbar">
     <ul class="nav-links">
-      <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="shop.html">Shop</a></li>
       <li><a href="community.html">Community</a></li>
-      <li><a href="redwood.html">Redwood OG RP</a></li>
-      <li><a href="characters.html">Characters</a></li>
     </ul>
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero" role="main" aria-labelledby="home-title">
+  <section class="hero">
     <img
-      src="https://i.imgur.com/Fo2UMPk.png"
-      alt="JHQ Logo"
+      src="https://i.imgur.com/JeRupDB.png"
+      alt="JaxsonHQ Logo"
       class="main-logo"
-      loading="lazy"
-      width="180"
-      height="180"
     />
-    <h1 id="home-title">WELCOME TO<br /><span>JAXSONHQ</span></h1>
-    <p class="tagline" aria-label="Site tagline">
-      Streaming Chaos<br />
-      Building Community<br />
-      Built Different. Held Together. #FAMILY
+
+    <p class="value-prop">
+      JaxsonHQ is a rising content creator and streamer known for high-energy gameplay,
+      cinematic overlays, and a community that knows how to LOCK TF IN.
     </p>
 
     <!-- Social Media Icons -->
-    <div class="socials" aria-label="Social media links">
-      <a href="https://twitch.tv/jaxsonhq" target="_blank" rel="noopener noreferrer" aria-label="Twitch">
-        <img src="https://i.imgur.com/Tg6TtXZ.png" alt="Twitch" loading="lazy" width="40" height="40" />
-      </a>
-      <a href="https://discord.gg/6c4VnbP4qq" target="_blank" rel="noopener noreferrer" aria-label="Discord">
-        <img src="https://i.imgur.com/RBqBRE6.png" alt="Discord" loading="lazy" width="40" height="40" />
-      </a>
-      <a href="https://tiktok.com/@jaxsonhq" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-        <img src="https://i.imgur.com/uER5fLF.png" alt="TikTok" loading="lazy" width="40" height="40" />
-      </a>
-      <a href="https://youtube.com/@jaxsonhq" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-        <img src="https://i.imgur.com/kWjh1GR.png" alt="YouTube" loading="lazy" width="40" height="40" />
-      </a>
+    <div class="socials">
+      <a href="https://twitch.tv/jaxsonhq" target="_blank"><img src="https://i.imgur.com/Tg6TtXZ.png" alt="Twitch"></a>
+      <a href="https://discord.gg/6c4VnbP4qq" target="_blank"><img src="https://i.imgur.com/RBqBRE6.png" alt="Discord"></a>
+      <a href="https://tiktok.com/@jaxsonhq" target="_blank"><img src="https://i.imgur.com/uER5fLF.png" alt="TikTok"></a>
+      <a href="https://youtube.com/@jaxsonhq" target="_blank"><img src="https://i.imgur.com/kWjh1GR.png" alt="YouTube"></a>
     </div>
-
-    <a
-      class="watch-btn"
-      href="https://twitch.tv/jaxsonhq"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Watch JaxsonHQ live on Twitch"
-    >
-      🎥 Watch Live
-    </a>
-
-    <!-- Twitch Embed -->
-    <div class="stream-wrapper" aria-label="Live Twitch stream player">
-      <div class="stream-loading" aria-live="polite" aria-atomic="true">Loading stream...</div>
-      <iframe
-        class="stream-placeholder"
-        src="https://player.twitch.tv/?channel=jaxsonhq&parent=jaxsonhq.com"
-        allowfullscreen
-        frameborder="0"
-        title="JaxsonHQ Twitch Stream"
-        loading="lazy"
-        aria-hidden="false"
-      ></iframe>
-    </div>
-
-    <!-- Floating Logo -->
-    <img
-      src="https://i.imgur.com/Fo2UMPk.png"
-      alt="JHQ Animated Logo"
-      class="animated-logo"
-      aria-hidden="true"
-      loading="lazy"
-      width="150"
-      height="150"
-    />
   </section>
 
   <!-- Footer -->
   <footer>
     &copy; 2025 JaxsonHQ | Built Different. Held Together. <strong>#FAMILY</strong>
   </footer>
+
 </body>
 </html>
