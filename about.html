@@ -28,43 +28,21 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
+    /* NAVBAR */
     .navbar {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       padding: 1.5rem 3rem;
       background: #000000cc;
       border-bottom: 2px solid var(--tiffany-blue);
       flex-wrap: wrap;
+      z-index: 1000;
       position: sticky;
       top: 0;
-      z-index: 1000;
       backdrop-filter: saturate(180%) blur(10px);
-      user-select: none;
-    }
-
-    .logo {
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--text-light);
-      border: 2px solid var(--text-light);
-      padding: 0.25rem 0.75rem;
-      border-radius: 10px;
-      background-color: #ffffff10;
-      text-decoration: none;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: none;
-    }
-
-    .logo:hover,
-    .logo:focus {
-      background-color: var(--tiffany-blue);
-      color: #000;
-      outline: none;
     }
 
     .nav-links {
@@ -81,95 +59,92 @@
       padding: 0.5rem 1rem;
       border-radius: 8px;
       transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: none;
     }
 
     .nav-links li a:hover,
-    .nav-links li a:focus,
     .nav-links li a.active {
       background: rgba(64, 224, 208, 0.1);
       color: var(--tiffany-blue);
-      outline: none;
     }
 
-    main {
-      flex-grow: 1;
-    }
-
-    .hero {
-      padding: 4rem 2rem 6rem;
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .main-logo {
-      width: 160px;
-      max-width: 100%;
-      margin: 0 auto 2rem;
-      filter:
-        drop-shadow(0 0 20px var(--neon-pink))
-        drop-shadow(0 0 20px var(--tiffany-blue));
-      user-select: none;
-      display: block;
+    /* HERO LOGO */
+    .hero-logo {
+      width: 220px;
+      max-width: 80%;
       height: auto;
+      margin: 3rem auto 2rem;
+      animation: pulseGlow 3s ease-in-out infinite;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 900;
-      letter-spacing: 2px;
-      margin-bottom: 1rem;
-      user-select: text;
-      color: var(--text-light);
+    @keyframes pulseGlow {
+      0%, 100% {
+        transform: scale(1);
+        filter:
+          drop-shadow(0 0 25px var(--tiffany-blue))
+          drop-shadow(0 0 25px var(--neon-pink));
+      }
+      50% {
+        transform: scale(1.08);
+        filter:
+          drop-shadow(0 0 50px var(--tiffany-blue))
+          drop-shadow(0 0 50px var(--neon-pink));
+      }
     }
 
-    .description {
+    /* DESCRIPTION */
+    .about-description {
       font-size: 1.2rem;
-      line-height: 1.6;
-      color: #ddd;
-      margin-bottom: 2rem;
-      user-select: text;
-    }
-
-    .about-content {
-      font-size: 1.15rem;
-      line-height: 1.6;
-      color: #ddd;
-      text-align: left;
-      margin: 0 auto 2rem auto;
       max-width: 700px;
-      user-select: text;
+      margin: 0 auto 3rem;
+      line-height: 1.6;
+      color: #eaeaea;
+      font-weight: 500;
+      text-align: center;
+      padding: 0 1rem;
     }
 
-    .socials {
+    /* TEAM CARDS */
+    .team-section {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 1.5rem;
-      margin: 2rem 0;
-      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto 3rem;
     }
 
-    .socials a {
-      display: inline-block;
-      filter: drop-shadow(0 0 5px #fff);
-      transition: transform 0.3s ease, filter 0.3s ease;
+    .team-card {
+      background: #00000080;
+      border: 2px solid var(--tiffany-blue);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 0 15px var(--tiffany-blue);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .socials a:hover,
-    .socials a:focus {
-      transform: scale(1.1);
-      filter: brightness(1.5) drop-shadow(0 0 8px #fff);
-      outline: none;
+    .team-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px var(--neon-pink);
     }
 
-    .socials img {
-      width: 40px;
-      height: 40px;
-      display: block;
-      user-select: none;
+    .team-card h3 {
+      font-size: 1.3rem;
+      color: var(--tiffany-blue);
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+      text-shadow: 0 0 10px var(--tiffany-blue);
     }
 
+    .team-card p {
+      font-size: 1rem;
+      color: #ddd;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* FOOTER */
     footer {
       text-align: center;
       padding: 1.5rem;
@@ -177,99 +152,90 @@
       background-color: #000000cc;
       font-size: 0.95rem;
       border-top: 1px solid var(--tiffany-blue);
-      user-select: none;
       margin-top: auto;
+      user-select: none;
     }
 
-    /* Responsive */
+    /* MOBILE */
     @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
-        gap: 1rem;
-        padding-top: 1rem;
-        width: 100%;
+      .hero-logo {
+        width: 180px;
       }
-
-      .hero {
-        padding: 3rem 1rem 5rem;
-        max-width: 100%;
+      .about-description {
+        font-size: 1rem;
+        padding: 0 0.8rem;
       }
+      .team-card {
+        width: 45%;
+      }
+    }
 
-      .about-content {
-        text-align: center;
-        padding: 0 1rem;
+    @media (max-width: 480px) {
+      .team-card {
+        width: 90%;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar" role="navigation" aria-label="Main Navigation">
-    <a href="index.html" class="logo" aria-label="JaxsonHQ Home">JHQ</a>
+
+  <!-- Navbar -->
+  <nav class="navbar">
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="about.html" class="active" aria-current="page">About</a></li>
+      <li><a href="about.html" class="active">About</a></li>
       <li><a href="shop.html">Shop</a></li>
       <li><a href="community.html">Community</a></li>
-      <li><a href="redwood.html">Redwood OG RP</a></li>
-      <li><a href="characters.html">Characters</a></li>
     </ul>
   </nav>
 
-  <!-- Main Content -->
-  <main>
-    <section class="hero" role="main" aria-labelledby="about-title">
-      <img
-        src="https://i.imgur.com/Fo2UMPk.png"
-        alt="JHQ Logo"
-        class="main-logo"
-        loading="lazy"
-        width="160"
-        height="160"
-      />
-      <h1 id="about-title">About JaxsonHQ</h1>
+  <!-- Logo -->
+  <img src="https://i.imgur.com/JeRupDB.png" alt="JaxsonHQ Logo" class="hero-logo" />
 
-      <p class="description">
-        Welcome to <strong>JaxsonHQ</strong> — your go-to destination for streaming chaos and building community.
-        Founded on the principles of being different and held together by the #FAMILY spirit, JaxsonHQ is where energy,
-        creativity, and fun collide.
-      </p>
+  <!-- About Description -->
+  <p class="about-description">
+    JaxsonHQ is a growing content creator and streamer, focused on high-energy gameplay, cinematic overlays, and building a passionate community.
+    Our team brings together creativity, chaos, and professionalism to keep content fun and exciting.
+  </p>
 
-      <div class="about-content">
-        <p>
-          JaxsonHQ isn’t just a brand or a channel — it’s a movement. Born from high-octane GTA RP, chaotic character storytelling,
-          and unapologetic community vibes, the mission is simple: build a place where everyone belongs, laughs hard, and lives loud.
-        </p>
-        <p>
-          Whether you’re here for wild Twitch streams, iconic RP characters, the carnivore wellness journey, or just vibing with the fam — JHQ
-          brings it together. It's streaming. It's storytelling. It's a family. And it's just getting started.
-        </p>
-        <p>
-          Come for the content. Stay for the community. 💥
-        </p>
-      </div>
-
-      <!-- Social Icons -->
-      <div class="socials" aria-label="Social media links">
-        <a href="https://twitch.tv/jaxsonhq" target="_blank" rel="noopener noreferrer" aria-label="Twitch">
-          <img src="https://i.imgur.com/Tg6TtXZ.png" alt="Twitch" loading="lazy" width="40" height="40" />
-        </a>
-        <a href="https://discord.gg/6c4VnbP4qq" target="_blank" rel="noopener noreferrer" aria-label="Discord">
-          <img src="https://i.imgur.com/RBqBRE6.png" alt="Discord" loading="lazy" width="40" height="40" />
-        </a>
-        <a href="https://tiktok.com/@jaxsonhq" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-          <img src="https://i.imgur.com/uER5fLF.png" alt="TikTok" loading="lazy" width="40" height="40" />
-        </a>
-        <a href="https://youtube.com/@jaxsonhq" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-          <img src="https://i.imgur.com/kWjh1GR.png" alt="YouTube" loading="lazy" width="40" height="40" />
-        </a>
-      </div>
-    </section>
-  </main>
+  <!-- Team Section -->
+  <div class="team-section">
+    <div class="team-card">
+      <h3>JaxsonHQ</h3>
+      <p>Founder & Streamer<br>
+         High-energy content creator delivering cinematic overlays and chaotic gameplay while building a passionate community.</p>
+    </div>
+    <div class="team-card">
+      <h3>nursec09</h3>
+      <p>Co-Owner<br>
+         Supports operations, organizes projects, and keeps the JaxsonHQ machine running smoothly behind the scenes.</p>
+    </div>
+    <div class="team-card">
+      <h3>blear_caribou668</h3>
+      <p>Main Content Editor<br>
+         Handles editing streams and videos, ensuring all content is polished and cinematic for the audience.</p>
+    </div>
+    <div class="team-card">
+      <h3>Meatball</h3>
+      <p>Twitch Moderator<br>
+         Keeps the chat safe, energetic, and chaotic while supporting the community during live streams.</p>
+    </div>
+    <div class="team-card">
+      <h3>Chimera</h3>
+      <p>Twitch Moderator<br>
+         Keeps the chat safe, energetic, and chaotic while supporting the community during live streams.</p>
+    </div>
+    <div class="team-card">
+      <h3>Marine Gaming</h3>
+      <p>Brother / New Streamer<br>
+         Aspiring streamer bringing fresh energy and learning the ropes alongside the JaxsonHQ team.</p>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>
     &copy; 2025 JaxsonHQ | Built Different. Held Together. <strong>#FAMILY</strong>
   </footer>
+
 </body>
 </html>
