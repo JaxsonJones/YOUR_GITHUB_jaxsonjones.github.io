@@ -2,194 +2,627 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>JaxsonHQ | Characters</title>
   <link rel="icon" href="images/favicon.ico" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --neon-pink: #ff4fc2;
-      --tiffany-blue: #40e0d0;
-      --deep-purple: #1e003b;
-      --card-bg: #2c003f;
-      --text-light: #ffffff;
-      --text-muted: #ccc;
+    :root{
+      /* === JaxsonHQ palette (ice-blue theme) === */
+      --blue: #0ABEFF;
+      --bg1: #55D7FF;
+      --bg2: #AEEFFF;
+      --bg3: #E8FBFF;
+      --bg4: #FFFFFF;
+
+      /* Neutrals */
+      --ink: #05070b;
+      --text: #05070b;
+      --muted: rgba(5,7,11,.68);
+
+      /* Surfaces */
+      --hairline: rgba(0,0,0,.12);
+
+      /* Effects */
+      --shadow: 0 18px 50px rgba(0,0,0,.18);
+      --glow: 0 0 18px rgba(10,190,255,.22), 0 0 34px rgba(10,190,255,.14);
+
+      /* Layout */
+      --max: 1120px;
+      --radius: 18px;
     }
 
-    * {
-      box-sizing: border-box;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+
+    body{
+      margin:0;
+      font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 520px at 24% 28%, rgba(10,190,255,0.18), rgba(10,190,255,0) 70%),
+        radial-gradient(1000px 620px at 75% 32%, rgba(85,215,255,0.16), rgba(85,215,255,0) 72%),
+        radial-gradient(950px 620px at 85% 88%, rgba(10,190,255,0.55), rgba(10,190,255,0) 70%),
+        radial-gradient(1100px 700px at 55% 14%, rgba(255,255,255,0.55), rgba(255,255,255,0) 72%),
+        linear-gradient(135deg, var(--bg1), var(--bg2) 35%, var(--bg3) 70%, var(--bg4));
+      overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: radial-gradient(circle at center, var(--deep-purple), #000000);
-      color: var(--text-light);
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px;}
+
+    /* ===== NAV ===== */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      background: rgba(255,255,255,.60);
+      backdrop-filter: saturate(160%) blur(12px);
+      border-bottom: 1px solid var(--hairline);
     }
 
-    nav.navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 3rem;
-      background: #000000cc;
-      border-bottom: 2px solid var(--tiffany-blue);
-      flex-wrap: wrap;
+    .navInner{
+      display:flex; align-items:center; justify-content:space-between;
+      height:74px;
+      gap:14px;
     }
 
-    .logo {
-      font-size: 2rem;
-      font-weight: bold;
-      color: var(--text-light);
-      border: 2px solid var(--text-light);
-      padding: 0.25rem 0.75rem;
-      border-radius: 10px;
-      background-color: #ffffff10;
-      text-decoration: none;
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      text-decoration:none;
+      user-select:none;
+      flex: 0 0 auto;
+    }
+    .brandMark{
+      width:14px; height:14px; border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--blue));
+      box-shadow: var(--glow);
+      border:1px solid rgba(0,0,0,.10);
+      flex: 0 0 auto;
+    }
+    .brandText{
+      font-weight:900;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .brandText span{opacity:.75; font-weight:900}
+
+    .links{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      justify-content:flex-end;
+      flex: 1 1 auto;
+    }
+    .links a{
+      text-decoration:none;
+      padding:10px 12px;
+      border-radius:12px;
+      color: rgba(5,7,11,.78);
+      font-weight:900;
+      letter-spacing:.2px;
+      transition: transform .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease;
+      white-space: nowrap;
+    }
+    .links a:hover{
+      background: rgba(10,190,255,.14);
+      color: var(--ink);
+      transform: translateY(-1px);
+      box-shadow: var(--glow);
+    }
+    .links a.active{
+      background: rgba(10,190,255,.18);
+      border: 1px solid rgba(10,190,255,.40);
+      box-shadow: var(--glow);
+      color: var(--ink);
     }
 
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      padding-left: 0;
+    .menuBtn{
+      display:none;
+      border:1px solid var(--hairline);
+      background: rgba(255,255,255,.72);
+      color: var(--ink);
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:900;
+      letter-spacing:.6px;
+      cursor:pointer;
+      white-space:nowrap;
     }
 
-    .nav-links li a {
-      text-decoration: none;
-      color: var(--text-light);
-      font-weight: 600;
-      padding: 0.5rem 1rem;
-      transition: color 0.2s ease;
+    .drawer{
+      display:none;
+      border-top:1px solid var(--hairline);
+      padding:10px 0 16px;
+    }
+    .drawer a{
+      display:block;
+      text-decoration:none;
+      padding:12px 14px;
+      border-radius:12px;
+      margin:6px 0;
+      background: rgba(255,255,255,.78);
+      border:1px solid rgba(0,0,0,.10);
+      font-weight:900;
+      color: rgba(5,7,11,.86);
+    }
+    .drawer a:hover{
+      border-color: rgba(10,190,255,.45);
+      box-shadow: var(--glow);
+      background: rgba(10,190,255,.10);
+    }
+    .drawer.show{display:block}
+
+    /* ===== HERO ===== */
+    .hero{
+      position:relative;
+      padding:56px 0 18px;
+    }
+    .fx{
+      position:absolute; inset:-60px 0 auto 0;
+      height:420px;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:0;
+      opacity:.95;
+    }
+    .fx .scan{
+      position:absolute;
+      inset:-120px;
+      background: linear-gradient(115deg,
+        rgba(10,190,255,0) 0%,
+        rgba(10,190,255,.12) 45%,
+        rgba(255,255,255,.35) 50%,
+        rgba(10,190,255,.12) 55%,
+        rgba(10,190,255,0) 100%);
+      transform: translateX(-80%) rotate(8deg);
+      opacity:0;
+      mix-blend-mode: screen;
+      filter: blur(.6px);
+      animation: scan 8.5s ease-in-out infinite;
+    }
+    @keyframes scan{
+      0%{opacity:0; transform:translateX(-80%) rotate(8deg)}
+      12%{opacity:.9}
+      55%{opacity:.9}
+      70%{opacity:0}
+      100%{opacity:0; transform:translateX(80%) rotate(8deg)}
     }
 
-    .nav-links li a:hover,
-    .nav-links li a.active {
-      color: var(--tiffany-blue);
+    .panel{
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.62));
+      border: 1px solid rgba(0,0,0,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
     }
 
-    h1 {
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 2.8rem;
-      color: var(--tiffany-blue);
+    .heroPanel{
+      position:relative;
+      z-index:1;
+      padding:22px;
     }
 
-    .bio-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-      max-width: 1300px;
-      margin: 0 auto;
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-weight:900;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      font-size:12px;
+      color: rgba(5,7,11,.84);
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(10,190,255,.35);
+      background: rgba(10,190,255,.12);
+    }
+    .kicker b{color: var(--ink)}
+
+    h1{
+      margin:16px 0 10px;
+      font-size: clamp(30px, 4.6vw, 46px);
+      line-height:1.05;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      color: var(--ink);
+    }
+    .sub{
+      color: var(--muted);
+      font-weight:800;
+      line-height:1.6;
+      font-size:15px;
+      max-width:70ch;
+      margin:0;
     }
 
-    .bio-card {
-      background-color: var(--card-bg);
-      border: 2px solid var(--neon-pink);
-      border-radius: 16px;
-      padding: 1.5rem;
-      box-shadow: 0 0 20px var(--neon-pink);
-      animation: fadeIn 1s ease both;
-      transition: transform 0.3s ease;
+    /* ===== CHARACTERS ===== */
+    .section{padding:14px 0 58px}
+    .sectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:14px;
+      margin:18px 0 14px;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-size:16px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      color: var(--ink);
+    }
+    .sectionHead p{
+      margin:0;
+      color: rgba(5,7,11,.64);
+      font-weight:800;
+      font-size:13px;
     }
 
-    .bio-card:hover {
-      transform: scale(1.02);
+    .charGrid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:14px;
     }
 
-    .bio-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      border: 2px solid var(--tiffany-blue);
+    .charCard{
+      border-radius: 18px;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.74);
+      box-shadow: 0 18px 40px rgba(0,0,0,.12);
+      overflow:hidden;
+      display:grid;
+      grid-template-columns: 250px 1fr;
+      min-height: 280px;
+      position:relative;
+    }
+    .charCard::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(520px 200px at 20% 20%, rgba(10,190,255,.14), transparent 60%),
+        radial-gradient(520px 200px at 80% 0%, rgba(85,215,255,.12), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .charCard > *{position:relative; z-index:1}
+
+    .photo{
+      border-right:1px solid rgba(0,0,0,.10);
+      background:
+        radial-gradient(520px 260px at 35% 25%, rgba(10,190,255,.22), transparent 65%),
+        radial-gradient(460px 240px at 60% 75%, rgba(85,215,255,.16), transparent 65%),
+        rgba(255,255,255,.85);
+      padding:16px;
+      display:flex;
+      align-items:stretch;
+      justify-content:stretch;
     }
 
-    .bio-card h2 {
-      margin-top: 0;
-      color: var(--tiffany-blue);
-      font-size: 1.6rem;
+    .charImage{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:16px;
+      display:block;
+      box-shadow:
+        0 18px 40px rgba(0,0,0,.25),
+        inset 0 1px 0 rgba(255,255,255,.12);
+      transform: scale(1.01);
     }
 
-    .bio-card p {
-      margin: 0.4rem 0;
-      line-height: 1.5;
+    /* subtle glow overlay */
+    .photo{position:relative}
+    .photo::after{
+      content:"";
+      position:absolute;
+      inset:16px;
+      border-radius:16px;
+      background: radial-gradient(600px 260px at 50% 20%, rgba(10,190,255,.18), transparent 60%);
+      pointer-events:none;
     }
 
-    .bio-card p strong {
-      color: var(--neon-pink);
+    .charBody{
+      padding:16px 16px 18px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
     }
 
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      color: var(--text-muted);
-      background-color: #00000066;
-      margin-top: 2rem;
+    .tagRow{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:2px;
+    }
+    .tag{
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      border:1px solid rgba(10,190,255,.35);
+      background: rgba(10,190,255,.10);
+      color: var(--ink);
+      white-space:nowrap;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .charName{
+      margin:0;
+      font-size:22px;
+      letter-spacing:.3px;
+      text-transform:uppercase;
+      color: var(--ink);
+    }
+    .charRole{
+      margin:-6px 0 0;
+      font-weight:900;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      font-size:12px;
+      color: rgba(5,7,11,.76);
+    }
+    .charDesc{
+      margin:0;
+      color: rgba(5,7,11,.72);
+      line-height:1.65;
+      font-size:13px;
+      font-weight:800;
+      max-width: 75ch;
     }
 
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    .quote{
+      margin:2px 0 0;
+      padding-left: 12px;
+      border-left: 3px solid rgba(10,190,255,.45);
+      color: rgba(5,7,11,.80);
+      font-weight:900;
+      letter-spacing:.3px;
+      text-transform:uppercase;
+      font-size:12px;
+    }
 
-      .logo {
-        margin-bottom: 1rem;
-      }
+    .actions{
+      margin-top:auto;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      text-decoration:none;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(0,0,0,.12);
+      font-weight:900;
+      letter-spacing:.4px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+      user-select:none;
+      color: var(--ink);
+      background: rgba(255,255,255,.80);
+      min-height: 46px;
+    }
+    .btn:hover{transform:translateY(-1px); box-shadow: var(--glow);}
+    .btnPrimary{
+      background: linear-gradient(90deg, rgba(10,190,255,.95), rgba(85,215,255,.95));
+      border-color: rgba(10,190,255,.35);
+    }
+    .btnGhost:hover{
+      border-color: rgba(10,190,255,.45);
+      background: rgba(10,190,255,.12);
+    }
+
+    .note{
+      margin-top:14px;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.72);
+      color: rgba(5,7,11,.72);
+      font-weight:800;
+      line-height:1.55;
+      box-shadow: 0 18px 40px rgba(0,0,0,.10);
+    }
+    .note b{color: var(--ink)}
+
+    /* ===== FOOTER ===== */
+    footer{
+      border-top:1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.60);
+      padding:22px 0;
+      color: rgba(5,7,11,.70);
+      font-size:13px;
+      font-weight:800;
+    }
+    footer strong{color: var(--ink)}
+
+    /* ===== Mobile optimization ===== */
+    @media (max-width: 980px){
+      .links{display:none}
+      .menuBtn{display:inline-flex}
+      .charGrid{grid-template-columns:1fr}
+      .fx{height:380px}
+    }
+
+    @media (max-width: 620px){
+      .wrap{padding:0 14px}
+      .navInner{height:auto; padding:12px 0;}
+      .charCard{grid-template-columns:1fr}
+      .photo{border-right:none; border-bottom:1px solid rgba(0,0,0,.10)}
+      .photo::after{inset:16px}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .fx .scan{animation:none !important}
+      .btn, .links a{transition:none}
     }
   </style>
 </head>
+
 <body>
-  <nav class="navbar">
-    <a href="index.html" class="logo">JHQ</a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="shop.html">Shop</a></li>
-      <li><a href="community.html">Community</a></li>
-      <li><a href="redwood.html">Redwood OG RP</a></li>
-      <li><a href="characters.html" class="active">Characters</a></li>
-    </ul>
-  </nav>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="wrap navInner">
+      <a class="brand" href="index.html" aria-label="JaxsonHQ Home">
+        <span class="brandMark"></span>
+        <div class="brandText">Jaxson<span>HQ</span></div>
+      </a>
 
-  <h1>RP Character Bios</h1>
+      <nav class="links" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="shop.html">Shop</a>
+        <a href="community.html">Community</a>
+        <a href="visionland.html">Visionland RP</a>
+        <a class="active" href="characters.html">Characters</a>
+      </nav>
 
-  <div class="bio-container">
-    <!-- Character: Jaxson -->
-    <div class="bio-card">
-      <img src="https://i.imgur.com/yourimage2.png" alt="Jaxson">
-      <h2>Jaxson</h2>
-      <p><strong>Role:</strong> Content Creator / Chaos Queen</p>
-      <p><strong>Vibe:</strong> Funny, Flirty, Unpredictable</p>
-      <p><strong>Story:</strong> Known for turning the streets into a stage. From racing to singing to blowing stuff up, Jaxson lives for the spotlight and drives the wildest RP moments across the city and county.</p>
+      <button class="menuBtn" id="menuBtn" aria-expanded="false" aria-controls="drawer">MENU</button>
     </div>
 
-    <!-- Character: Rick O'Shea -->
-    <div class="bio-card">
-      <img src="https://i.imgur.com/kRrxvwj.png" alt="Rick O'Shea">
-      <h2>Rick O'Shea</h2>
-      <p><strong>Role:</strong> LSPD Officer</p>
-      <p><strong>Vibe:</strong> Lispy, Wild, Outlandish</p>
-      <p><strong>Story:</strong> Rick O'Shea is the only officer who can tase you mid-dance battle, flirt with your grandma during a high-speed chase, and still file the paperwork by lunch. His badge may say "LSPD," but his heart screams "daytime drama." Expect chaos, sass, and way too many inappropriate soundboard clips.</p>
+    <!-- Mobile drawer -->
+    <div class="wrap drawer" id="drawer" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="shop.html">Shop</a>
+      <a href="community.html">Community</a>
+      <a href="visionland.html">Visionland RP</a>
+      <a class="active" href="characters.html">Characters</a>
     </div>
-  </div>
+  </header>
 
+  <!-- HERO -->
+  <main class="hero">
+    <div class="fx" aria-hidden="true">
+      <div class="scan"></div>
+    </div>
+
+    <div class="wrap">
+      <section class="panel heroPanel" aria-label="Characters hero">
+        <div class="kicker">
+          <span style="width:10px;height:10px;border-radius:999px;background:var(--blue);box-shadow:0 0 12px rgba(10,190,255,.55)"></span>
+          Visionland RP // <b>JaxsonHQ</b> // #FAMILY
+        </div>
+
+        <h1>Characters</h1>
+        <p class="sub">
+          This is the roster that drives the chaos, the leadership, and the moments that turn into clips.
+          Same HQ energy — different personalities.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <!-- CHARACTERS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="sectionHead">
+        <h2>Meet the Crew</h2>
+        <p>Official character profiles for the HQ.</p>
+      </div>
+
+      <div class="charGrid">
+        <!-- JAXSON -->
+        <article class="charCard" aria-label="Character: Jaxson Jones">
+          <div class="photo">
+            <img
+              src="https://i.imgur.com/8CR6bbc.jpeg"
+              alt="Jaxson Jones, Mayor of Visionland"
+              class="charImage"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="charBody">
+            <div class="tagRow">
+              <span class="tag">The Mayor</span>
+              <span class="tag">Visionary</span>
+              <span class="tag">Outlandish</span>
+            </div>
+
+            <h3 class="charName">Jaxson Jones</h3>
+            <p class="charRole">Wild • Intriguing • Can’t ignore</p>
+
+            <p class="charDesc">
+              Jaxson is the kind of mayor that turns every day into a headline. He’s bold, unpredictable,
+              and always moving like the city depends on it (because in his mind… it does).
+              Big ideas, bigger energy — and zero fear of the spotlight.
+            </p>
+
+            <p class="quote">For the People. By the People.</p>
+
+            <div class="actions">
+              <a class="btn btnPrimary" href="community.html">Join the HQ →</a>
+              <a class="btn btnGhost" href="visionland.html">Visionland RP →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- RICK -->
+        <article class="charCard" aria-label="Character: Commander Rick O'Shea">
+          <div class="photo">
+            <img
+              src="https://i.imgur.com/VNVtEIY.png"
+              alt="Commander Rick O'Shea, LSPD"
+              class="charImage"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="charBody">
+            <div class="tagRow">
+              <span class="tag">Top 5 Command</span>
+              <span class="tag">LSPD</span>
+              <span class="tag">Bridge Builder</span>
+            </div>
+
+            <h3 class="charName">Commander Rick O’Shea</h3>
+            <p class="charRole">Leader • Respect-driven • Community-first</p>
+
+            <p class="charDesc">
+              Rick is one of the highest-ranking voices in command — but he’s not here to be distant.
+              He focuses on building real relationships between LEO and citizens, keeping the peace
+              with communication, professionalism, and trust.
+            </p>
+
+            <p class="quote">Trust first. Then tactics.</p>
+
+            <div class="actions">
+              <a class="btn btnPrimary" href="index.html">Watch Live ▶</a>
+              <a class="btn btnGhost" href="community.html">Discord / #FAMILY →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="note">
+        <b>More characters coming soon.</b> The HQ roster will keep growing — new faces, new arcs, and more “did that just happen?” moments.
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    &copy; 2025 JaxsonHQ | All characters are a chaotic work of fiction.
+    <div class="wrap" style="display:flex; gap:12px; justify-content:space-between; flex-wrap:wrap; align-items:center;">
+      <div>&copy; 2026 <strong>JaxsonHQ</strong> | Built Different. Held Together. <strong>#FAMILY</strong></div>
+      <div style="opacity:.78;">Ice-blue theme • clean lines • modern motion</div>
+    </div>
   </footer>
+
+  <script>
+    // Mobile menu toggle
+    const btn = document.getElementById('menuBtn');
+    const drawer = document.getElementById('drawer');
+
+    btn?.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('show');
+      btn.setAttribute('aria-expanded', String(isOpen));
+    });
+  </script>
 </body>
 </html>
