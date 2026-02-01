@@ -5,280 +5,689 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>JaxsonHQ | Shop</title>
   <link rel="icon" href="images/favicon.ico" />
+
+  <!-- Clean modern font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --neon-pink: #ff4fc2;
-      --tiffany-blue: #40e0d0;
-      --deep-purple: #1e003b;
-      --text-light: #ffffff;
+    :root{
+      /* === jaxsonss palette (ice-blue theme) === */
+      --blue: #0ABEFF;
+      --bg1: #55D7FF;
+      --bg2: #AEEFFF;
+      --bg3: #E8FBFF;
+      --bg4: #FFFFFF;
+
+      /* Neutrals */
+      --ink: #05070b;
+      --text: #05070b;
+      --muted: rgba(5,7,11,.68);
+
+      /* Surfaces */
+      --hairline: rgba(0,0,0,.12);
+
+      /* Effects */
+      --shadow: 0 18px 50px rgba(0,0,0,.18);
+      --glow: 0 0 18px rgba(10,190,255,.22), 0 0 34px rgba(10,190,255,.14);
+
+      /* Layout */
+      --max: 1120px;
+      --radius: 18px;
     }
 
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background: radial-gradient(circle at center, var(--deep-purple), #0a0a0a);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: var(--text-light);
-      text-align: center;
-      overflow-x: hidden;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 520px at 24% 28%, rgba(10,190,255,0.18), rgba(10,190,255,0) 70%),
+        radial-gradient(1000px 620px at 75% 32%, rgba(85,215,255,0.16), rgba(85,215,255,0) 72%),
+        radial-gradient(950px 620px at 85% 88%, rgba(10,190,255,0.55), rgba(10,190,255,0) 70%),
+        radial-gradient(1100px 700px at 55% 14%, rgba(255,255,255,0.55), rgba(255,255,255,0) 72%),
+        linear-gradient(135deg, var(--bg1), var(--bg2) 35%, var(--bg3) 70%, var(--bg4));
+      overflow-x:hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* NAVBAR */
-    .navbar {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 1.5rem 3rem;
-      background: #000000cc;
-      border-bottom: 2px solid var(--tiffany-blue);
-      flex-wrap: wrap;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: saturate(180%) blur(10px);
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px;}
+
+    /* ===== NAV ===== */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      background: rgba(255,255,255,.60);
+      backdrop-filter: saturate(160%) blur(12px);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .navInner{
+      display:flex; align-items:center; justify-content:space-between;
+      height:74px;
+      gap:14px;
     }
 
-    .nav-links {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      text-decoration:none;
+      user-select:none;
+      flex: 0 0 auto;
+    }
+    .brandMark{
+      width:14px; height:14px; border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--blue));
+      box-shadow: var(--glow);
+      border:1px solid rgba(0,0,0,.10);
+      flex: 0 0 auto;
+    }
+    .brandText{
+      font-weight:900;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .brandText span{opacity:.75; font-weight:900}
+
+    .links{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      justify-content:flex-end;
+      flex: 1 1 auto;
+    }
+    .links a{
+      text-decoration:none;
+      padding:10px 12px;
+      border-radius:12px;
+      color: rgba(5,7,11,.78);
+      font-weight:900;
+      letter-spacing:.2px;
+      transition: transform .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease;
+      white-space: nowrap;
+    }
+    .links a:hover{
+      background: rgba(10,190,255,.14);
+      color: var(--ink);
+      transform: translateY(-1px);
+      box-shadow: var(--glow);
+    }
+    .links a.active{
+      background: rgba(10,190,255,.18);
+      border: 1px solid rgba(10,190,255,.40);
+      box-shadow: var(--glow);
+      color: var(--ink);
     }
 
-    .nav-links li a {
-      text-decoration: none;
-      color: var(--text-light);
-      font-weight: 600;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      transition: background-color 0.3s ease, color 0.3s ease;
+    .menuBtn{
+      display:none;
+      border:1px solid var(--hairline);
+      background: rgba(255,255,255,.72);
+      color: var(--ink);
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:900;
+      letter-spacing:.6px;
+      cursor:pointer;
+      white-space:nowrap;
     }
 
-    .nav-links li a:hover,
-    .nav-links li a:focus,
-    .nav-links li a.active {
-      background: rgba(64, 224, 208, 0.1);
-      color: var(--tiffany-blue);
-      outline: none;
+    .drawer{
+      display:none;
+      border-top:1px solid var(--hairline);
+      padding:10px 0 16px;
+    }
+    .drawer a{
+      display:block;
+      text-decoration:none;
+      padding:12px 14px;
+      border-radius:12px;
+      margin:6px 0;
+      background: rgba(255,255,255,.78);
+      border:1px solid rgba(0,0,0,.10);
+      font-weight:900;
+      color: rgba(5,7,11,.86);
+    }
+    .drawer a:hover{
+      border-color: rgba(10,190,255,.45);
+      box-shadow: var(--glow);
+      background: rgba(10,190,255,.10);
+    }
+    .drawer.show{display:block}
+
+    /* ===== PAGE HEADER ===== */
+    .pageHead{
+      position:relative;
+      padding:56px 0 18px;
     }
 
-    /* HERO SECTION */
-    .hero {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 6rem 2rem;
+    /* FX layer (same vibe) */
+    .fx{
+      position:absolute; inset:-60px 0 auto 0;
+      height:420px;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:0;
+      opacity:.92;
+    }
+    .fx svg{position:absolute; inset:0; width:100%; height:100%}
+
+    .fx .scan{
+      position:absolute;
+      inset:-120px;
+      background: linear-gradient(115deg,
+        rgba(10,190,255,0) 0%,
+        rgba(10,190,255,.12) 45%,
+        rgba(255,255,255,.35) 50%,
+        rgba(10,190,255,.12) 55%,
+        rgba(10,190,255,0) 100%);
+      transform: translateX(-80%) rotate(8deg);
+      opacity:0;
+      mix-blend-mode: screen;
+      filter: blur(.6px);
+      animation: scan 9.2s ease-in-out infinite;
+    }
+    @keyframes scan{
+      0%{opacity:0; transform:translateX(-80%) rotate(8deg)}
+      12%{opacity:.85}
+      55%{opacity:.85}
+      70%{opacity:0}
+      100%{opacity:0; transform:translateX(80%) rotate(8deg)}
     }
 
-    .main-logo {
-      width: 320px;
-      max-width: 85%;
-      height: auto;
-      animation: pulseGlow 3s ease-in-out infinite, fadeIn 1.2s ease-out forwards;
-      opacity: 0;
-      filter:
-        drop-shadow(0 0 40px var(--neon-pink))
-        drop-shadow(0 0 40px var(--tiffany-blue));
-      user-select: none;
-      margin-bottom: 2rem;
+    .plusField{position:absolute; inset:0; pointer-events:none; z-index:1;}
+    .plus{
+      position:absolute;
+      width:16px; height:16px;
+      opacity:.6;
+      filter: drop-shadow(0 0 12px rgba(10,190,255,.20));
+      animation: float 8.2s ease-in-out infinite;
+    }
+    .plus::before,.plus::after{
+      content:""; position:absolute; left:50%; top:50%;
+      background: rgba(5,7,11,.85);
+      border-radius:3px; transform:translate(-50%,-50%);
+    }
+    .plus::before{width:16px;height:4px}
+    .plus::after{width:4px;height:16px}
+    @keyframes float{
+      0%{transform:translateY(0) scale(1)}
+      50%{transform:translateY(-10px) scale(1.03); opacity:.42}
+      100%{transform:translateY(0) scale(1)}
     }
 
-    .page-title {
-      font-size: 2.25rem;
-      font-weight: 900;
-      margin-bottom: 1rem;
-      color: #fff;
-      text-align: center;
-      animation: fadeIn 1.4s ease-out forwards;
-      opacity: 0;
+    .panel{
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.62));
+      border: 1px solid rgba(0,0,0,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
     }
 
-    .shop-description {
-      font-size: 1.25rem;
-      max-width: 700px;
-      margin-bottom: 3rem;
-      color: #ddd;
-      line-height: 1.5;
-      animation: fadeIn 1.6s ease-out forwards;
-      animation-delay: 0.3s;
-      opacity: 0;
-      text-align: center;
+    .headGrid{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:22px;
+      align-items:stretch;
     }
 
-    .shop-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      align-items: center;
-      max-width: 700px;
-      margin: 0 auto 3rem;
+    .left{padding:22px;}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-weight:900;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      font-size:12px;
+      color: rgba(5,7,11,.84);
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(10,190,255,.35);
+      background: rgba(10,190,255,.12);
+    }
+    .kicker b{color:var(--ink)}
+    h1{
+      margin:16px 0 10px;
+      font-size: clamp(34px, 5vw, 54px);
+      line-height:1.05;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      color: var(--ink);
+    }
+    .sub{
+      color: var(--muted);
+      font-weight:800;
+      line-height:1.65;
+      font-size:15px;
+      max-width:60ch;
+      margin:0;
     }
 
-    .shop-item {
-      background: #000000aa;
-      padding: 1.5rem 2rem;
-      border-radius: 20px;
-      box-shadow: 0 0 15px var(--tiffany-blue);
-      width: 100%;
-      text-align: left;
-      color: #ddd;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .ctaRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      text-decoration:none;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(0,0,0,.12);
+      font-weight:900;
+      letter-spacing:.4px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+      user-select:none;
+      color: var(--ink);
+      background: rgba(255,255,255,.80);
+      min-height: 46px;
+    }
+    .btn:hover{transform:translateY(-1px); box-shadow: var(--glow);}
+    .btnPrimary{
+      background: linear-gradient(90deg, rgba(10,190,255,.95), rgba(85,215,255,.95));
+      border-color: rgba(10,190,255,.35);
+    }
+    .btnGhost:hover{
+      border-color: rgba(10,190,255,.45);
+      background: rgba(10,190,255,.12);
     }
 
-    .shop-item:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 25px var(--neon-pink);
+    .right{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .miniTop{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.76);
+      gap:10px;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      font-weight:900;
+      letter-spacing:1.2px;
+      font-size:11px;
+      text-transform:uppercase;
+      border:1px solid rgba(10,190,255,.35);
+      background: rgba(10,190,255,.12);
+      color: rgba(5,7,11,.86);
+      white-space:nowrap;
+    }
+    .pill .dot{
+      width:8px;height:8px;border-radius:999px;
+      background: var(--blue);
+      box-shadow: 0 0 12px rgba(10,190,255,.55);
+    }
+    .logoArea{
+      margin-top:auto;
+      display:flex; justify-content:center;
+      padding:12px 8px 6px;
+      filter: drop-shadow(0 10px 26px rgba(10,190,255,.18));
+    }
+    .logoArea img{
+      width: min(360px, 92%);
+      height:auto;
+      user-select:none;
     }
 
-    .shop-item h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--neon-pink);
-      margin-bottom: 0.5rem;
+    /* ===== SHOP GRID ===== */
+    .section{
+      padding:10px 0 56px;
+      position:relative;
+      z-index:2;
+    }
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+      margin:8px 0 14px;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-size:16px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      color: var(--ink);
+    }
+    .sectionHead p{
+      margin:0;
+      color: rgba(5,7,11,.70);
+      font-size:13px;
+      line-height:1.5;
+      max-width:60ch;
+      font-weight:800;
     }
 
-    .shop-item p {
-      font-size: 1.1rem;
-      line-height: 1.5;
+    .shopGrid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:12px;
+    }
+    .item{
+      padding:16px;
+      border-radius:18px;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.74);
+      box-shadow: 0 18px 40px rgba(0,0,0,.12);
+      position:relative;
+      overflow:hidden;
+      min-height: 150px;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .item::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(520px 200px at 20% 20%, rgba(10,190,255,.14), transparent 60%),
+        radial-gradient(520px 200px at 80% 0%, rgba(85,215,255,.12), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .item > *{position:relative; z-index:1}
+    .item:hover{
+      transform: translateY(-2px);
+      border-color: rgba(10,190,255,.55);
+      box-shadow: 0 18px 48px rgba(0,0,0,.16), var(--glow);
     }
 
-    .shop-link {
-      display: inline-block;
-      margin-top: 2rem;
-      padding: 1rem 2.5rem;
-      background: linear-gradient(45deg, var(--tiffany-blue), var(--neon-pink));
-      color: #fff;
-      font-weight: 700;
-      border-radius: 30px;
-      text-decoration: none;
-      box-shadow: 0 0 15px var(--neon-pink);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .tag{
+      display:inline-flex; align-items:center; gap:10px;
+      font-weight:900;
+      letter-spacing:1.6px;
+      text-transform:uppercase;
+      font-size:11px;
+      color: rgba(5,7,11,.82);
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(10,190,255,.35);
+      background: rgba(10,190,255,.10);
+      margin-bottom:10px;
+      white-space:nowrap;
+    }
+    .tag .dot{
+      width:8px;height:8px;border-radius:999px;
+      background: var(--blue);
+      box-shadow: 0 0 12px rgba(10,190,255,.55);
     }
 
-    .shop-link:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px var(--tiffany-blue);
+    .item h3{
+      margin:0 0 8px;
+      font-size:18px;
+      letter-spacing:.4px;
+      color: var(--ink);
+      text-transform:uppercase;
+      font-weight:900;
+    }
+    .item p{
+      margin:0;
+      color: rgba(5,7,11,.72);
+      line-height:1.6;
+      font-size:13px;
+      font-weight:800;
     }
 
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      color: #ccc;
-      background-color: #000000cc;
-      font-size: 0.95rem;
-      border-top: 1px solid var(--tiffany-blue);
-      margin-top: auto;
-      user-select: none;
+    .storeBar{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-start;
+      align-items:center;
     }
 
-    /* ANIMATIONS */
-    @keyframes pulseGlow {
-      0%, 100% {
-        transform: scale(1);
-        filter:
-          drop-shadow(0 0 25px var(--tiffany-blue))
-          drop-shadow(0 0 25px var(--neon-pink));
-      }
-      50% {
-        transform: scale(1.08);
-        filter:
-          drop-shadow(0 0 50px var(--tiffany-blue))
-          drop-shadow(0 0 50px var(--neon-pink));
-      }
+    .btnWide{
+      width:100%;
+      justify-content:center;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* ===== FOOTER ===== */
+    footer{
+      border-top:1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.60);
+      padding:22px 0;
+      color: rgba(5,7,11,.70);
+      font-size:13px;
+      font-weight:800;
+      position:relative;
+      z-index:2;
+    }
+    footer strong{color: var(--ink)}
+
+    /* ===== Mobile optimization ===== */
+    @media (max-width: 980px){
+      .links{display:none}
+      .menuBtn{display:inline-flex}
+      .headGrid{grid-template-columns:1fr}
+      .shopGrid{grid-template-columns:1fr}
+      .pageHead{padding-top:44px}
+      .fx{height:380px}
     }
 
-    /* MOBILE */
-    @media (max-width: 768px) {
-      .main-logo {
-        width: 230px;
-      }
-      .page-title {
-        font-size: 1.75rem;
-      }
-      .shop-description {
-        font-size: 1rem;
-        padding: 0 1rem;
-      }
-      .shop-item {
-        padding: 1rem 1.5rem;
-      }
-      .shop-link {
-        padding: 0.8rem 2rem;
-      }
+    @media (max-width: 520px){
+      .wrap{padding:0 14px}
+      .navInner{height:auto; padding:12px 0}
+      .left{padding:18px}
+      .right{padding:14px}
+      .miniTop{flex-direction:column; align-items:flex-start}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .fx .scan, .plus, .fx path{animation:none !important}
+      .btn{transition:none}
     }
   </style>
 </head>
+
 <body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="wrap navInner">
+      <!-- Brand -->
+      <a class="brand" href="index.html" aria-label="JaxsonHQ Home">
+        <span class="brandMark"></span>
+        <div class="brandText">Jaxson<span>HQ</span></div>
+      </a>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="community.html">Community</a></li>
-      <li><a href="shop.html" class="active">Shop</a></li>
-    </ul>
-  </nav>
+      <!-- ALL NAV ITEMS MATCH -->
+      <nav class="links" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a class="active" href="shop.html">Shop</a>
+        <a href="community.html">Community</a>
+        <a href="visionland.html">Visionland RP</a>
+      </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <img
-      src="https://i.imgur.com/JeRupDB.png"
-      alt="JaxsonHQ Logo"
-      class="main-logo"
-    />
-    <h1 class="page-title">JaxsonHQ Merch</h1>
-    <p class="shop-description">
-      Check out the latest JaxsonHQ gear! Support the channel and grab your favorite items below.
-    </p>
-
-    <!-- Shop Items -->
-    <div class="shop-list">
-      <div class="shop-item">
-        <h3>Tropical Vibes Jax & Rocky Graphic Tee</h3>
-        <p>Palm trees, waves, and a partial sun—perfect for summer streaming vibes.</p>
-      </div>
-      <div class="shop-item">
-        <h3>JAXSONHQ Bold Logo Tee</h3>
-        <p>Show your support for the channel with this clean gamer-friendly shirt.</p>
-      </div>
-      <div class="shop-item">
-        <h3>JHQ Think Different Trucker Hat</h3>
-        <p>Bold pink 'JHQ' letters with a motivational tagline to keep you inspired.</p>
-      </div>
-      <div class="shop-item">
-        <h3>JAXSONHQ Desk Mat</h3>
-        <p>Built Different. Held Together. #FAMILY—perfect for your streaming setup.</p>
-      </div>
+      <!-- Mobile menu button -->
+      <button class="menuBtn" id="menuBtn" aria-expanded="false" aria-controls="drawer">MENU</button>
     </div>
 
-    <!-- Shop Button -->
-    <a href="https://jaxsonhq-shop.fourthwall.com" target="_blank" class="shop-link">
-      🛒 Visit Store
-    </a>
+    <!-- Mobile drawer -->
+    <div class="wrap drawer" id="drawer" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a class="active" href="shop.html">Shop</a>
+      <a href="community.html">Community</a>
+      <a href="visionland.html">Visionland RP</a>
+    </div>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <main class="pageHead">
+    <!-- FX layer -->
+    <div class="fx" aria-hidden="true">
+      <svg viewBox="0 0 1200 420" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="rgba(10,190,255,.95)"/>
+            <stop offset="1" stop-color="rgba(85,215,255,.85)"/>
+          </linearGradient>
+        </defs>
+
+        <!-- black linework -->
+        <g opacity=".16">
+          <path d="M0 90 H1200" stroke="#000" stroke-width="2"/>
+          <path d="M0 200 H1200" stroke="#000" stroke-width="2"/>
+          <path d="M0 320 H1200" stroke="#000" stroke-width="2"/>
+          <path d="M180 0 V420" stroke="#000" stroke-width="2"/>
+          <path d="M520 0 V420" stroke="#000" stroke-width="2"/>
+          <path d="M860 0 V420" stroke="#000" stroke-width="2"/>
+          <path d="M-120 170 L520 -80" stroke="#000" stroke-width="2"/>
+          <path d="M260 420 L980 -20" stroke="#000" stroke-width="2"/>
+        </g>
+
+        <!-- blue chasers -->
+        <g style="mix-blend-mode:multiply">
+          <path class="chase a" d="M-120 170 L520 -80" />
+          <path class="chase b" d="M260 420 L980 -20" />
+          <path class="chase c" d="M0 200 H1200" />
+          <path class="chase d" d="M520 0 V420" />
+        </g>
+
+        <style>
+          .chase{
+            fill:none;
+            stroke:url(#blueGrad);
+            stroke-width:3;
+            stroke-linecap:round;
+            opacity:.40;
+            filter: drop-shadow(0 0 10px rgba(10,190,255,.16));
+            stroke-dasharray:160 1500;
+            animation: chase 9.2s linear infinite;
+          }
+          .chase.b{animation-duration:10.6s; opacity:.36}
+          .chase.c{animation-duration:9.8s; opacity:.32}
+          .chase.d{animation-duration:11.5s; opacity:.30}
+          @keyframes chase{from{stroke-dashoffset:0}to{stroke-dashoffset:-2400}}
+        </style>
+      </svg>
+
+      <div class="plusField">
+        <div class="plus" style="left:14%; top:30%;"></div>
+        <div class="plus" style="left:26%; top:68%; animation-delay:-1.4s;"></div>
+        <div class="plus" style="left:56%; top:22%; animation-delay:-2.2s; opacity:.55;"></div>
+        <div class="plus" style="left:74%; top:52%; animation-delay:-3.1s;"></div>
+        <div class="plus" style="left:88%; top:28%; animation-delay:-4.1s; opacity:.55;"></div>
+      </div>
+
+      <div class="scan"></div>
+    </div>
+
+    <div class="wrap">
+      <div class="headGrid">
+        <!-- LEFT -->
+        <section class="panel left" aria-label="Shop header">
+          <div class="kicker">
+            <span style="width:10px;height:10px;border-radius:999px;background:var(--blue);box-shadow:0 0 12px rgba(10,190,255,.55)"></span>
+            Shop <b>JaxsonHQ</b>
+          </div>
+
+          <h1>JaxsonHQ Merch</h1>
+
+          <p class="sub">
+            Support the channel and rep the #FAMILY with clean drops built for stream life.
+            Shirts, hats, desk gear — everything made to match the energy.
+          </p>
+
+          <div class="ctaRow">
+            <a class="btn btnPrimary btnWide" href="https://jaxsonhq-shop.fourthwall.com" target="_blank" rel="noopener">
+              Visit Store <span aria-hidden="true">🛒</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- RIGHT -->
+        <aside class="panel right" aria-label="Shop quick info">
+          <div class="miniTop">
+            <div class="pill"><span class="dot"></span> Limited Drops</div>
+            <div style="text-align:right; font-weight:900; color:var(--ink); letter-spacing:.6px;">
+              New items
+              <small style="display:block; opacity:.70; font-weight:900; letter-spacing:1px;">as they release</small>
+            </div>
+          </div>
+
+          <div class="logoArea">
+            <img src="https://i.imgur.com/adtl1Mz.png" alt="JaxsonHQ Logo">
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- SHOP ITEMS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="sectionHead">
+        <h2>Featured Items</h2>
+        <p>Quick preview of some favorites. Full catalog is on Fourthwall.</p>
+      </div>
+
+      <div class="shopGrid">
+        <article class="item">
+          <div class="tag"><span class="dot"></span> Tee</div>
+          <h3>Tropical Vibes Jax & Rocky Graphic Tee</h3>
+          <p>Palm trees, waves, and summer energy — built for warm weather and late-night streams.</p>
+        </article>
+
+        <article class="item">
+          <div class="tag"><span class="dot"></span> Tee</div>
+          <h3>JAXSONHQ Bold Logo Tee</h3>
+          <p>Clean and loud. Perfect everyday shirt to rep the HQ without trying too hard.</p>
+        </article>
+
+        <article class="item">
+          <div class="tag"><span class="dot"></span> Hat</div>
+          <h3>JHQ Think Different Trucker Hat</h3>
+          <p>Keep it moving. Classic trucker fit with a mindset reminder baked in.</p>
+        </article>
+
+        <article class="item">
+          <div class="tag"><span class="dot"></span> Desk</div>
+          <h3>JAXSONHQ Desk Mat</h3>
+          <p>Built Different. Held Together. #FAMILY — upgrade the setup and stay locked in.</p>
+        </article>
+      </div>
+
+      <div class="storeBar">
+        <a class="btn btnPrimary" href="https://jaxsonhq-shop.fourthwall.com" target="_blank" rel="noopener">
+          Visit Store <span aria-hidden="true">🛒</span>
+        </a>
+        <a class="btn btnGhost" href="community.html">
+          Join the #FAMILY <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
   </section>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
-    &copy; 2025 JaxsonHQ | Built Different. Held Together. <strong>#FAMILY</strong>
+    <div class="wrap" style="display:flex; gap:12px; justify-content:space-between; flex-wrap:wrap; align-items:center;">
+      <div>&copy; 2026 <strong>JaxsonHQ</strong> | Built Different. Held Together. <strong>#FAMILY</strong></div>
+      <div style="opacity:.78;">Ice-blue theme • clean lines • modern motion</div>
+    </div>
   </footer>
 
+  <script>
+    // Mobile menu toggle
+    const btn = document.getElementById('menuBtn');
+    const drawer = document.getElementById('drawer');
+
+    btn?.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('show');
+      btn.setAttribute('aria-expanded', String(isOpen));
+    });
+  </script>
 </body>
 </html>
